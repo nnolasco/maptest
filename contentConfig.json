@@ -1,0 +1,69 @@
+{
+    "testing": "testword",
+    "routes": [
+        {
+            "route": "onboarding",
+            "title": "",
+            "header": "Keepin communities safer together",
+            "img": "",
+            "copy": "We are partnering with customers like you."
+        },
+        {
+            "route": "home",
+            "title": "",
+            "header": "Safety Concerns",
+            "img": "",
+            "copy": "We are partnering with customers like you.",
+            "cta": "Load More"
+        }
+    ],
+    "issuetypes": [
+        {
+            "label": "Power Pole",
+            "description": "",
+            "icon": ""
+        }
+    ],
+    "filters": [
+        {
+            "filter": "author",
+            "label": "Author",
+            "options": [
+                "all",
+                "me"
+            ]
+        },
+        {
+            "filter": "type",
+            "label": "Issue Type",
+            "options": [
+                "Power Pole",
+                "Power Line",
+                "Other"
+            ]
+        }
+    ],
+    "report": [
+    ],
+    "confirmation": [
+    ],
+    "offline": [
+    ],
+    "errors": [
+        {
+            "code": 500,
+            "error": "file not found",
+            "description": "The file was not found."
+        }
+    ],
+    "actions": [
+        {
+            "text": "Home",
+            "img": ""
+        },
+        {
+            "text": "Report",
+            "img": ""
+        }
+    ]
+}
