@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { StyleSheet, Button, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import MapView, { AnimatedRegion } from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 
@@ -53,38 +53,48 @@ export default function TabOneScreen() {
             flexDirection: 'row',
             flexWrap: 'wrap',
             alignItems: 'flex-start', // if you want to fill rows left to right
-            height: 40
         },
         item: {
             padding: 5,
-            height: 30,
             width: '50%' // is 50% of container width
+        },
+        button: {
+            alignItems: 'center',
+            backgroundColor: '#1f68e2',
+            padding: 10
+        },
+        buttonText: {
+            color: '#ffffff'
         }
     })
 
     return (
         <>
-        <MapView
-            ref={mapRef}
-            initialRegion={INITIAL_REGION}
-            style={{ flex: 1, height: 400 }}
-        >
-            <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
-            <Marker coordinate={{ latitude: 37.78525, longitude: -122.4224 }} />
-            <Marker coordinate={{ latitude: 37.7765, longitude: -122.4124 }} />
-            <Marker coordinate={{ latitude: 37.7965, longitude: -122.4424 }} />
-            <Marker coordinate={{ latitude: 37.8065, longitude: -122.4424 }} />
-            <Marker coordinate={{ latitude: 37.7765, longitude: -122.4424 }} />
-            <Marker coordinate={{ latitude: 37.7565, longitude: -122.4324 }} />
-        </MapView>
-        <View style={styles.container}>
-            <View style={styles.item}>
-                <Button onPress={animateToRegion} title="Animate" />
+            <MapView
+                ref={mapRef}
+                initialRegion={INITIAL_REGION}
+                style={{ flex: 1, height: 400 }}
+            >
+                <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
+                <Marker coordinate={{ latitude: 37.78525, longitude: -122.4224 }} />
+                <Marker coordinate={{ latitude: 37.7765, longitude: -122.4124 }} />
+                <Marker coordinate={{ latitude: 37.7965, longitude: -122.4424 }} />
+                <Marker coordinate={{ latitude: 37.8065, longitude: -122.4424 }} />
+                <Marker coordinate={{ latitude: 37.7765, longitude: -122.4424 }} />
+                <Marker coordinate={{ latitude: 37.7565, longitude: -122.4324 }} />
+            </MapView>
+            <View style={styles.container}>
+                <View style={styles.item}>
+                    <TouchableOpacity style={styles.button} onPress={animateToRegion} >
+                        <Text style={styles.buttonText} >Animate</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.item}>
+                    <TouchableOpacity style={styles.button} onPress={animateToCurrent} >
+                        <Text style={styles.buttonText} >Current Location</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.item}>
-                <Button onPress={animateToCurrent} title="Current Location" />
-            </View>
-        </View>
         </>
     );
 }
