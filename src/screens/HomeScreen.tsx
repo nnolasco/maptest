@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import MapView, { AnimatedRegion } from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 
-export default function TabOneScreen() {
+export default function HomeScreen() {
 
     const INITIAL_REGION = {
         latitude: 37.72825,

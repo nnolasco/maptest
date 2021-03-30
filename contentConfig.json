@@ -1,5 +1,5 @@
 {
-    "testing": "testword",
+    "testing": "test value from JSON file",
     "routes": [
         {
             "route": "onboarding",
