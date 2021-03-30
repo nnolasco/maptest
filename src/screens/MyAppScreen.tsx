@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import { ListItem, Icon } from 'react-native-elements';
+import { ListItem, Icon, Divider } from 'react-native-elements';
 
 export default function MyAppScreen() {
 
@@ -9,57 +9,68 @@ export default function MyAppScreen() {
         {
             type: 'header',
             name: 'About & Settings',
+            iconType: '',
             icon: ''
         },
         {
             type: 'item',
             name: 'About This App',
-            icon: 'av-timer'
+            iconType: 'material',
+            icon: 'phone-iphone'
         },
         {
             type: 'item',
             name: 'Notifications',
-            icon: 'flight-takeoff'
+            iconType: 'material-community',
+            icon: 'bell'
         },
         {
             type: 'header',
             name: 'Reports',
+            iconType: '',
             icon: ''
         },
         {
             type: 'item',
             name: 'My Reports',
-            icon: 'av-timer'
+            iconType: 'material-community',
+            icon: 'clipboard-text'
         },
         {
             type: 'header',
             name: 'Privacy & Terms of Use',
-            icon: 'flight-takeoff'
+            iconType: '',
+            icon: ''
         },
         {
             type: 'item',
             name: 'Privacy Policy',
-            icon: 'av-timer'
+            iconType: 'material-community',
+            icon: 'lock'
         },
         {
             type: 'item',
             name: 'Terms of Use',
-            icon: 'flight-takeoff'
+            iconType: 'material-community',
+            icon: 'text'
         },
         {
             type: 'item',
             name: 'Cookie Policy',
-            icon: 'flight-takeoff'
+            iconType: 'material-community',
+            icon: 'cookie'
         },
         {
             type: 'header',
             name: 'Support',
+            iconType: '',
             icon: ''
         },
         {
             type: 'item',
             name: 'Help Center',
-            icon: 'av-timer'
+            iconType: 'material-community',
+            icon: 'help-circle-outline'
         }
     ]
 
@@ -70,12 +81,15 @@ export default function MyAppScreen() {
                 list.map((item, i) => {
                     if (item.type === 'header') {
                         return (
-                            <Text key={i} style={styles.title}>{item.name}</Text>
+                            <View key={i}>
+                                <Text style={styles.title}>{item.name}</Text>
+                                <Divider />
+                            </View>
                         )
                     } else {
                         return (
                             <ListItem key={i} bottomDivider>
-                                <Icon name={item.icon} color="#0d527a"
+                                <Icon name={item.icon} type={item.iconType} color="#0d527a"
                                 />
                                 <ListItem.Content>
                                     <ListItem.Title style={{ color: '#0d527a', fontWeight: 'bold' }} >{item.name}</ListItem.Title>
@@ -99,13 +113,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-        paddingTop: 20,
+        paddingTop: 30,
         paddingLeft: 20,
         paddingBottom: 5,
         paddingRight: 20,
         backgroundColor: '#FFFFFF',
-        borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
         color: '#333333'
     },
     separator: {
