@@ -11,8 +11,8 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
-  const word = data.testing;
-  console.log(word); // output 'testing'
+  const testvalue = data.testing;
+  console.log(testvalue); // console testing
 
   if (!isLoadingComplete) {
     return null;

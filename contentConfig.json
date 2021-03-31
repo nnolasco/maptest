@@ -1,17 +1,82 @@
 {
-    "testing": "test value from JSON file",
+    "testing": "test value success",
     "routes": [
         {
             "route": "onboarding",
             "title": "",
             "header": "Keepin communities safer together",
-            "img": "",
-            "copy": "We are partnering with customers like you."
+            "content": [
+                {
+                    "name": "",
+                    "text": "We are partnering with customers like you."
+                }
+            ],
+            "buttons": [
+                {
+                    "name": "next",
+                    "text": "Next"
+                },
+                {
+                    "name": "done",
+                    "text": "Get Started"
+                }
+            ],
+            "slides": [
+                {
+                    "key": "1",
+                    "title": "Keeping communities safer, together.",
+                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team.",
+                    "image": "onboard-1",
+                    "backgroundColor": "#FFFFFF"
+                },
+                {
+                    "key": "2",
+                    "title": "Common Concerns",
+                    "text": "The 4 most common concerns involve poles, lines, equipment, and trees or vines. Our map has icons for each, plus one for Other.",
+                    "image": "onboard-2",
+                    "backgroundColor": "#FFFFFF"
+                }
+            ]
+        },
+        {
+            "route": "signin",
+            "title": "",
+            "header": "Keepin communities safer, together",
+            "content": [
+                {
+                    "name": "paragraph1",
+                    "text": "While our new app is in the preview stage, only those who received an invitation can report a safety concern."
+                },
+                {
+                    "name": "paragraph2",
+                    "text": "Please enter the email address where your invite was sent:"
+                }
+            ],
+            "buttons": [
+                {
+                    "name": "continue",
+                    "text": "Continue"
+                }
+            ]
         },
         {
             "route": "home",
             "title": "",
             "header": "Safety Concerns",
+            "img": "",
+            "content": [
+                {
+                    "block": "",
+                    "text": "We are partnering with customers like you."
+                }
+            ],
+            "copy": "We are partnering with customers like you.",
+            "cta": "Load More"
+        },
+        {
+            "route": "about",
+            "title": "About This App",
+            "header": "About This App",
             "img": "",
             "copy": "We are partnering with customers like you.",
             "cta": "Load More"
@@ -24,6 +89,20 @@
             "icon": ""
         }
     ],
+    "usertypes": [
+        {
+            "label": "Select One",
+            "value": ""
+        },
+        {
+            "label": "Regular",
+            "value": "normal"
+        },
+        {
+            "label": "Administrator",
+            "value": "admin"
+        }
+    ],
     "filters": [
         {
             "filter": "author",
@@ -34,7 +113,7 @@
             ]
         },
         {
-            "filter": "type",
+            "filter": "issuetype",
             "label": "Issue Type",
             "options": [
                 "Power Pole",
@@ -52,18 +131,18 @@
     "errors": [
         {
             "code": 500,
-            "error": "file not found",
-            "description": "The file was not found."
-        }
-    ],
-    "actions": [
-        {
-            "text": "Home",
-            "img": ""
+            "error": "Internal Server Error",
+            "description": "There was an unexpected error on the server."
         },
         {
-            "text": "Report",
-            "img": ""
+            "code": 501,
+            "error": "Not Implemented",
+            "description": "The request method is not supported by the server and cannot be handled."
+        },
+        {
+            "code": 504,
+            "error": "Gateway Timeout",
+            "description": "The request took too long to complete."
         }
     ]
 }

@@ -5,6 +5,8 @@ import { ColorSchemeName } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import IntroScreen from '../screens/IntroScreen';
+import EmailScreen from '../screens/EmailScreen';
+
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -32,9 +34,19 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
                   options={{ headerShown: false }}
               />
               <Stack.Screen
+                  name="EmailScreen"
+                  component={EmailScreen}
+                  options={{ headerShown: false }}
+              />
+              <Stack.Screen
                   name="RootNavigator"
                   component={RootNavigator}
                   options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                  name="NotFoundScreen"
+                  component={NotFoundScreen}
+                  options={{ headerShown: true }}
               />
           </Stack.Navigator>
     </NavigationContainer>
