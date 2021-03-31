@@ -8,6 +8,14 @@ import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/HomeScreen';
 import ReportScreen from '../screens/ReportScreen';
 import MyAppScreen from '../screens/MyAppScreen';
+import AboutScreen from '../screens/AboutScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
+import MyReportsScreen from '../screens/MyReportsScreen';
+import PrivacyScreen from '../screens/PrivacyScreen';
+import TermsScreen from '../screens/TermsScreen';
+import CookieScreen from '../screens/CookieScreen';
+import HelpScreen from '../screens/HelpScreen';
+
 import { BottomTabParamList, HomeParamList, ReportParamList, MyAppParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -89,6 +97,41 @@ function MyAppNavigator() {
                 name="MyAppScreen"
                 component={MyAppScreen}
                 options={{ headerTitle: 'My App' }}
+            />
+            <MyAppStack.Screen
+                name="AboutScreen"
+                component={AboutScreen}
+                options={{ headerTitle: 'About This Screen' }}
+            />
+            <MyAppStack.Screen
+                name="NotificationsScreen"
+                component={NotificationsScreen}
+                options={{ headerTitle: 'Notifications' }}
+            />
+            <MyAppStack.Screen
+                name="MyReportsScreen"
+                component={MyReportsScreen}
+                options={{ headerTitle: 'My Reports' }}
+            />
+            <MyAppStack.Screen
+                name="PrivacyScreen"
+                component={PrivacyScreen}
+                options={{ headerTitle: 'Privacy Policy' }}
+            />
+            <MyAppStack.Screen
+                name="TermsScreen"
+                component={TermsScreen}
+                options={{ headerTitle: 'Terms of Use' }}
+            />
+            <MyAppStack.Screen
+                name="CookieScreen"
+                component={CookieScreen}
+                options={{ headerTitle: 'Cookie Policy' }}
+            />
+            <MyAppStack.Screen
+                name="HelpScreen"
+                component={HelpScreen}
+                options={{ headerTitle: 'Help Center' }}
             />
         </MyAppStack.Navigator>
     );

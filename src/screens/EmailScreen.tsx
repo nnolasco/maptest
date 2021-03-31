@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, ImageBackground, SafeAreaView, Text, View, Image, TextInput } from 'react-native';
 
-import * as data from '../../contentConfig.json';
+import data from '../../contentConfig.json';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 

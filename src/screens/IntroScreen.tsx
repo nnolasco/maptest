@@ -3,7 +3,7 @@ import { TouchableOpacity, ImageBackground, SafeAreaView, Text, View, Image } fr
 
 import AppIntroSlider from 'react-native-app-intro-slider';
 
-import * as data from '../../contentConfig.json';
+import data from '../../contentConfig.json';
 import styles from '../../Styles';
 
 import images from '../assets/images/images';

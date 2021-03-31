@@ -3,82 +3,26 @@ import { TouchableOpacity, View, Text } from 'react-native';
 
 import { ListItem, Icon, Divider } from 'react-native-elements';
 
-import * as data from '../../contentConfig.json';
+import data from '../../contentConfig.json';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 
-import NotFoundScreen from './NotFoundScreen';
+import myAppOutline from '../../myAppConfig.json';
 
-const list = [
-    {
-        type: 'header',
-        name: 'About & Settings',
-        iconType: '',
-        icon: ''
-    },
-    {
-        type: 'item',
-        name: 'About This App',
-        iconType: 'material',
-        icon: 'phone-iphone',
-        screen: 'HomeScreen'
-    },
-    {
-        type: 'item',
-        name: 'Notifications',
-        iconType: 'material-community',
-        icon: 'bell',
-        screen: 'NotFoundScreen'
-    },
-    {
-        type: 'header',
-        name: 'Reports',
-        iconType: '',
-        icon: ''
-    },
-    {
-        type: 'item',
-        name: 'My Reports',
-        iconType: 'material-community',
-        icon: 'clipboard-text'
-    },
-    {
-        type: 'header',
-        name: 'Privacy & Terms of Use',
-        iconType: '',
-        icon: ''
-    },
-    {
-        type: 'item',
-        name: 'Privacy Policy',
-        iconType: 'material-community',
-        icon: 'lock'
-    },
-    {
-        type: 'item',
-        name: 'Terms of Use',
-        iconType: 'material-community',
-        icon: 'text'
-    },
-    {
-        type: 'item',
-        name: 'Cookie Policy',
-        iconType: 'material-community',
-        icon: 'cookie'
-    },
-    {
-        type: 'header',
-        name: 'Support',
-        iconType: '',
-        icon: ''
-    },
-    {
-        type: 'item',
-        name: 'Help Center',
-        iconType: 'material-community',
-        icon: 'help-circle-outline'
-    }
-]
+import NotFoundScreen from './NotFoundScreen';
+import AboutScreen from './AboutScreen';
+
+const list = myAppOutline.MyAppOutline;
+
+
+function getNodeByRoute(routes, route) {
+    return routes.filter(
+        function (routes) {
+            return routes.route == route;
+        }
+    );
+}
+const configSettings = getNodeByRoute(data.routes, 'myapp');
 
 export default class MyAppScreen extends React.Component {
     constructor() {
@@ -86,13 +30,11 @@ export default class MyAppScreen extends React.Component {
 
         this.getScreen = this.getScreen.bind(this);
     }
-
     
-
     getScreen(item) {
         const { navigate } = this.props.navigation;
 
-        console.log(item.screen);
+        console.log("target:", item.screen);
         navigate(item.screen);
     }
 

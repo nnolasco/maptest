@@ -1,0 +1,78 @@
+{
+    "MyAppOutline": [
+        {
+            "type": "header",
+            "name": "About & Settings",
+            "iconType": "",
+            "icon": ""
+        },
+        {
+            "type": "item",
+            "name": "About This App",
+            "iconType": "material",
+            "icon": "phone-iphone",
+            "screen": "AboutScreen"
+        },
+        {
+            "type": "item",
+            "name": "Notifications",
+            "iconType": "material-community",
+            "icon": "bell",
+            "screen": "NotificationsScreen"
+        },
+        {
+            "type": "header",
+            "name": "Reports",
+            "iconType": "",
+            "icon": ""
+        },
+        {
+            "type": "item",
+            "name": "My Reports",
+            "iconType": "material-community",
+            "icon": "clipboard-text",
+            "screen": "MyReportsScreen"
+        },
+        {
+            "type": "header",
+            "name": "Privacy & Terms of Use",
+            "iconType": "",
+            "icon": "",
+            "screen": ""
+        },
+        {
+            "type": "item",
+            "name": "Privacy Policy",
+            "iconType": "material-community",
+            "icon": "lock",
+            "screen": "PrivacyScreen"
+        },
+        {
+            "type": "item",
+            "name": "Terms of Use",
+            "iconType": "material-community",
+            "icon": "text",
+            "screen": "TermsScreen"
+        },
+        {
+            "type": "item",
+            "name": "Cookie Policy",
+            "iconType": "material-community",
+            "icon": "cookie",
+            "screen": "CookieScreen"
+        },
+        {
+            "type": "header",
+            "name": "Support",
+            "iconType": "",
+            "icon": ""
+        },
+        {
+            "type": "item",
+            "name": "Help Center",
+            "iconType": "material-community",
+            "icon": "help-circle-outline",
+            "screen": "HelpScreen"
+        }
+    ]
+}

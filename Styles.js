@@ -4,12 +4,14 @@ export default StyleSheet.create({
     "container": {
         "flex": 1,
         "alignItems": "center",
-        "justifyContent": "center"
+        "justifyContent": "center",
+        "backgroundColor": "#fff"
     },
     "containerLeft": {
         "flex": 1,
         "alignItems": "flex-start",
-        "justifyContent": "center"
+        "justifyContent": "center",
+        "backgroundColor": "#fff"
     },
     "separator": {
         "marginVertical": 30,
@@ -73,6 +75,12 @@ export default StyleSheet.create({
         "textAlign": "center",
         "padding": 20
     },
+    "textLeft": {
+        "fontSize": 16,
+        "color": "#333333",
+        "textAlign": "left",
+        "padding": 20
+    },
     "paginationContainer": {
         "position": "absolute",
         "bottom": 16,
@@ -107,4 +115,6 @@ export default StyleSheet.create({
         "height": 1,
         "width": "80%"
     },
+    "scrollView": {
+    }
 });
