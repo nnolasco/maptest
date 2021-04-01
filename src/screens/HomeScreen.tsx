@@ -1,3 +1,33 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./src/screens/HomeScreen.tsx
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Primary application screen with interactive map.
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
+ *  
+ *  Notes:
+ *      04/01/2021  NJN     Proof of concept code only. Needs a lot of work to
+ *                          clean up. Needs to be hooked up to utility.js for
+ *                          configuration settings. All hardcoded locations need
+ *                          to be replaced with live locations.
+ *       
+ *  Revisions:
+ *      04/01/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 import React, { useRef } from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import MapView, { AnimatedRegion } from "react-native-map-clustering";

@@ -1,14 +1,43 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./contentConfig.json
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Configuration settings in JSON format app.
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
+ *  
+ *  Notes:
+ *      04/01/2021  NJN     This needs to be documented. Note to include that
+ *                          multiline content text can be an array for cleaner
+ *                          code. No HTML allowed, but linebreaks \n work.
+ *      
+ *      
+ *  Revisions:
+ *      04/01/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 {
-    "testing": "test value success",
+    "testing": "read JSON config success",
     "routes": [
         {
             "route": "onboarding",
             "title": "",
-            "header": "Keepin communities safer together",
             "content": [
                 {
                     "name": "",
-                    "text": "We are partnering with customers like you."
+                    "text": ""
                 }
             ],
             "buttons": [
@@ -25,14 +54,20 @@
                 {
                     "key": "1",
                     "title": "Keeping communities safer, together.",
-                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team.",
+                    "text": [
+                        "We're partnering with customers like you to make safer communities for all. ",
+                        "Use this app to report non-emergency concerns straight to our Safety Team."
+                    ],
                     "image": "onboard-1",
                     "backgroundColor": "#FFFFFF"
                 },
                 {
                     "key": "2",
                     "title": "Common Concerns",
-                    "text": "The 4 most common concerns involve poles, lines, equipment, and trees or vines. Our map has icons for each, plus one for Other.",
+                    "text": [ 
+                        "The 4 most common concerns involve poles, lines, equipment, and trees or ",
+                        "vines. Our map has icons for each, plus one for Other."
+                    ],
                     "image": "onboard-2",
                     "backgroundColor": "#FFFFFF"
                 }
@@ -41,11 +76,19 @@
         {
             "route": "signin",
             "title": "",
-            "header": "Keepin communities safer, together",
             "content": [
                 {
+                    "name": "header",
+                    "text": [
+                        "Email Sign-In Header"
+                    ]
+                },
+                {
                     "name": "paragraph1",
-                    "text": "While our new app is in the preview stage, only those who received an invitation can report a safety concern."
+                    "text": [
+                        "While our new app is in the preview stage, only those who received an ",
+                        "invitation can report a safety concern."
+                    ]
                 },
                 {
                     "name": "paragraph2",
@@ -54,7 +97,7 @@
             ],
             "buttons": [
                 {
-                    "name": "continue",
+                    "name": "submit",
                     "text": "Continue"
                 }
             ]
@@ -62,8 +105,33 @@
         {
             "route": "home",
             "title": "",
-            "header": "Safety Concerns",
             "content": []
+        },
+        {
+            "route": "report",
+            "title": "",
+            "header": "Safety Concerns",
+            "content": [
+                {
+                    "name": "header",
+                    "text": [
+                        "Report Header"
+                    ]
+                },
+                {
+                    "name": "paragraph",
+                    "text": [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel dolor a elit varius malesuada ",
+                        "quis vitae odio. Nullam aliquam ac elit sed suscipit. Duis felis erat, dictum sit amet dictum ac, ornare nec risus. "
+                    ]
+                }
+            ],
+            "buttons": [
+                {
+                    "name": "",
+                    "text": ""
+                }
+            ]
         },
         {
             "route": "myapp",
@@ -82,7 +150,10 @@
                 },
                 {
                     "name": "paragraph1",
-                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team."
+                    "text": [
+                        "We're partnering with customers like you to make safer communities for all. ",
+                        "Use this app to report non-emergency concerns straight to our Safety Team."
+                    ]
                 },
                 {
                     "name": "paragraph2",
@@ -94,7 +165,10 @@
                 },
                 {
                     "name": "paragraph3",
-                    "text": "The 4 most common concerns involve poles, lines, equipment, and trees or vines. Our map has icons for each, plus one for Other."
+                    "text": [
+                        "The 4 most common concerns involve poles, lines, equipment, and trees or ",
+                        "vines. Our map has icons for each, plus one for Other."
+                    ]
                 }
             ]
         },
@@ -109,7 +183,10 @@
                 },
                 {
                     "name": "paragraph1",
-                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team."
+                     "text": [
+                        "We're partnering with customers like you to make safer communities for all. ",
+                        "Use this app to report non-emergency concerns straight to our Safety Team."
+                    ]
                 },
                 {
                     "name": "paragraph2",
@@ -128,7 +205,10 @@
                 },
                 {
                     "name": "paragraph1",
-                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team."
+                     "text": [
+                        "We're partnering with customers like you to make safer communities for all. ",
+                        "Use this app to report non-emergency concerns straight to our Safety Team."
+                    ]
                 },
                 {
                     "name": "paragraph2",
@@ -291,7 +371,10 @@
                 },
                 {
                     "name": "paragraph1",
-                    "text": "We're partnering with customers like you to make safer communities for all. Use this app to report non-emergency concerns straight to our Safety Team."
+                     "text": [
+                        "We're partnering with customers like you to make safer communities for all. ",
+                        "Use this app to report non-emergency concerns straight to our Safety Team."
+                    ]
                 },
                 {
                     "name": "paragraph2",

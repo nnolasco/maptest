@@ -1,3 +1,43 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./myAppConfig.json
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Configuration settings in JSON format for the MyApp/About section.
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
+ *  
+ *  Notes:
+ *      type:       header = section header text
+ *                  item = list item
+ *      
+ *      name:       label for item in list
+ *      
+ *      iconType:   icon set: posssible values for React Native Icon Sets can be
+ *                  found here: https://reactnativeelements.com/docs/icon/
+ *      
+ *      icon:       icon name: for each icon set, icons that can be used can be 
+ *                  searched here: https://oblador.github.io/react-native-vector-icons/
+ *      
+ *      screen:     target screen when item is selected. These can be found
+ *                  under ./src/screens
+ *      
+ *      
+ *  Revisions:
+ *      04/01/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 {
     "MyAppOutline": [
         {
