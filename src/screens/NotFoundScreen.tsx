@@ -1,3 +1,30 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./src/screens/NotFoundScreen.tsx
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Error screen when a provided route cannot be found.
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Saturday, April 3, 2021 - 4:33 AM (CST)
+ *  
+ *  Notes:
+ *
+ *      
+ *  Revisions:
+ *      04/03/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

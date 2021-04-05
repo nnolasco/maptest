@@ -1,3 +1,31 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./src/navigation/BottomTabNavigator.tsx
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Bottom Tab Navigation definition for the app and navigation stack
+ *              under each tab.
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Friday, April 2, 2021 - 9:12 PM (CST)
+ *  
+ *  Notes:
+ *
+ *      
+ *  Revisions:
+ *      04/02/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -101,7 +129,7 @@ function MyAppNavigator() {
             <MyAppStack.Screen
                 name="AboutScreen"
                 component={AboutScreen}
-                options={{ headerTitle: 'About This Screen' }}
+                options={{ headerTitle: 'About This App' }}
             />
             <MyAppStack.Screen
                 name="NotificationsScreen"

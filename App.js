@@ -1,3 +1,31 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./App.js
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Application entry point. Contains all app screens inside
+ *              <SafeAreaProvider>
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Saturday, April 3, 2021 - 2:14 PM (CST)
+ *  
+ *  Notes:
+ *      
+ *      
+ *  Revisions:
+ *      04/03/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

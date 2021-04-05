@@ -1,3 +1,30 @@
+/*
+ *******************************************************************************
+ * 
+ *  Filename:   ./src/navigation/index.tsx
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   RootNavigator component
+ *  
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *  
+ *  Created:    Friday, April 2, 2021 - 9:12 PM (CST)
+ *  
+ *  Notes:
+ *
+ *      
+ *  Revisions:
+ *      04/02/2021  NJN     File Created
+ *      
+ *      
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';

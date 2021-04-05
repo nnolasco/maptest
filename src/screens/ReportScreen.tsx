@@ -1,24 +1,23 @@
 /*
  *******************************************************************************
- * 
+ *
  *  Filename:   ./src/screens/ReportScreen.tsx
  *
  *  Syntax:     NA
  *
- *  Synopsis:   First step of screen for reporting new Safety Issue.
- *  
+ *  Synopsis:   Screen for Home > Create Report
+ *    
  *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
+ *    
+ *  Created:    Saturday, April 3, 2021 - 4:33 AM (CST)
  *  
  *  Notes:
- *      04/01/2021  NJN     Placeholder text pulled from contentConfig.json.
- *      
- *      
+ *  
+ *    
  *  Revisions:
- *      04/01/2021  NJN     File Created
+ *      04/03/2021  NJN     File Created
  *      
- *      
+ *        
  *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
  *  Unauthorized copying of this file via any medium is strictly prohibited.
  *  Proprietary and Confidential.

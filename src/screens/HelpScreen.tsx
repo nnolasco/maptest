@@ -1,3 +1,31 @@
+/*
+ *******************************************************************************
+ *
+ *  Filename:   ./src/screens/HelpScreen.tsx
+ *
+ *  Syntax:     NA
+ *
+ *  Synopsis:   Screen for Home > My App > Help Center
+ *    
+ *  Author:     Norman J. Nolasco [ PWC ]
+ *    
+ *  Created:    Saturday, April 3, 2021 - 7:06 AM (CST)
+ *  
+ *  Notes:
+ *
+ *
+ *  Revisions:
+ *      04/03/2021  NJN     File Created
+ *      
+ *        
+ *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
+ *  Unauthorized copying of this file via any medium is strictly prohibited.
+ *  Proprietary and Confidential.
+ *
+ *******************************************************************************
+ */
+
+
 import * as React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 
