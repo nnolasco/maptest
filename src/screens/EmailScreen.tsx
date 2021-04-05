@@ -25,7 +25,7 @@
  *******************************************************************************
  */
 
-import * as React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Image, TextInput } from 'react-native';
 
 import data from '../../contentConfig.json';
@@ -33,47 +33,54 @@ import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 
-const testvalue = data.testing;
+const EmailScreen = (props) => {
+    const route = 'signin';
+    const configSettings = utility.getNodeByRoute(data.routes, route);
+    const buttons = utility.buttonDictionary(configSettings[0].buttons);
+    const content = utility.contentDictionary(configSettings[0].content);
 
-const route = 'signin';
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
 
-console.log("enter:", route, ":", testvalue);
-
-const configSettings = utility.getNodeByRoute(data.routes, route);
-const buttons = utility.buttonDictionary(configSettings[0].buttons);
-const content = utility.contentDictionary(configSettings[0].content);
-
-export default class EmailScreen extends React.Component {
-    constructor() {
-        super();
-
-        this._onDone = this._onDone.bind(this);
+    isEmailValid = () => {
+        let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(String(email).toLowerCase());
     }
 
-    _onDone = () => {
-        const { navigate } = this.props.navigation;
+    handleSubmit = () => {
+        const { navigate } = props.navigation;
 
-        console.log('home');
-        navigate('RootNavigator');
+        console.log('email submit:', email);
+
+        if (isEmailValid()) {
+            navigate('RootNavigator');
+        } else {
+            setError('invalid email format');
+        }
     }
 
-    render() {
-        return (
-            <View style={styles.containerLeft}>
-                <Text style={styles.sectiontitle}>{content["header"]}</Text>
-                <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
-                <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
+    return (
+        <View style={styles.containerLeft}>
+            <Text style={styles.sectiontitle}>{content["header"]}</Text>
+            <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
+            <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
 
-                <Text style={styles.inputLabel}>Email</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email Address"
-                />
-                <TouchableOpacity style={styles.buttonStyle} onPress={this._onDone} >
-                    <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
-                </TouchableOpacity>
+            <Text style={styles.inputLabel}>Email</Text>
+            <TextInput
+                style={styles.input}
+                onChangeText={email => { setError(''); setEmail(email); }}
+                placeholder="Email Address"
+                value={email}
+                defaultValue={email}
+            />
+            <View style={{ paddingLeft: 40, height: 30}}>
+                <Text style={styles.inputLabel, {color: '#990000'}}>{error}</Text>
             </View>
-        );
-    }
+            <TouchableOpacity style={styles.buttonStyle} onPress={handleSubmit} >
+                <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }
 
+export default EmailScreen;
