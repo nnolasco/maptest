@@ -1,62 +1,63 @@
 /*
  *******************************************************************************
- *
  *  Filename:   ./src/screens/HelpScreen.tsx
- *
  *  Syntax:     NA
- *
- *  Synopsis:   Screen for Home > My App > Help Center
- *    
- *  Author:     Norman J. Nolasco [ PWC ]
- *    
- *  Created:    Saturday, April 3, 2021 - 7:06 AM (CST)
- *  
+ *  Synopsis:   MyApp > Help Center - screen that shows how to get help
  *  Notes:
- *
- *
+ *  
  *  Revisions:
- *      04/03/2021  NJN     File Created
- *      
- *        
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  File Created
+ *      04/08/2021  Added Redux components.
  *******************************************************************************
  */
 
-
-import * as React from 'react';
+import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-
 import { ListItem, Icon, Divider } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
+import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
-import myAppOutline from '../../myAppConfig.json';
 
-function getNodeByRoute(routes, route) {
-    return routes.filter(
-        function (routes) {
-            return routes.route == route;
-        }
-    );
-}
+import {
+    HELP_LOADED,
+    HELP_UPDATE_VALUE,
+} from '../constants/actionTypesHelp';
 
-const configSettings = getNodeByRoute(data.routes, 'help');
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
 
-var content = {};
+const mapStateToProps = state => ({
+    ...state.Help,
+    masterState: state
+});
 
-for (var i = 0; i < configSettings[0].content.length; i++) {
-    content[configSettings[0].content[i].name] = configSettings[0].content[i].text;
-}
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: HELP_LOADED, payload }),
+    onUnload: () =>
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: HELP_UPDATE_VALUE, key, value }),
+    onStateToConsole: () =>
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
 
-export default class HelpScreen extends React.Component {
+const route = 'help';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const content = utility.contentDictionary(configSettings[0].content);
+
+export class HelpScreen extends React.Component {
     constructor() {
         super();
 
         this.getScreen = this.getScreen.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
 
     getScreen(screen) {
@@ -64,6 +65,11 @@ export default class HelpScreen extends React.Component {
 
         console.log("target:", screen);
         navigate(screen);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
     }
 
     render() {
@@ -76,3 +82,5 @@ export default class HelpScreen extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HelpScreen);

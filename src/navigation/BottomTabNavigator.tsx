@@ -39,8 +39,6 @@ import MyAppScreen from '../screens/MyAppScreen';
 import AboutScreen from '../screens/AboutScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
 import MyReportsScreen from '../screens/MyReportsScreen';
-import PrivacyScreen from '../screens/PrivacyScreen';
-import TermsScreen from '../screens/TermsScreen';
 import CookieScreen from '../screens/CookieScreen';
 import HelpScreen from '../screens/HelpScreen';
 
@@ -140,16 +138,6 @@ function MyAppNavigator() {
                 name="MyReportsScreen"
                 component={MyReportsScreen}
                 options={{ headerTitle: 'My Reports' }}
-            />
-            <MyAppStack.Screen
-                name="PrivacyScreen"
-                component={PrivacyScreen}
-                options={{ headerTitle: 'Privacy Policy' }}
-            />
-            <MyAppStack.Screen
-                name="TermsScreen"
-                component={TermsScreen}
-                options={{ headerTitle: 'Terms of Use' }}
             />
             <MyAppStack.Screen
                 name="CookieScreen"

@@ -1,61 +1,68 @@
 /*
  *******************************************************************************
- * 
  *  Filename:   ./src/screens/AboutScreen.tsx
- *
  *  Syntax:     NA
- *
- *  Synopsis:   Screen for Home > My App > About This App
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Saturday, April 3, 2021 - 4:33 AM (CST)
- *  
+ *  Synopsis:   MyApp > About This App - displays information about app
  *  Notes:
- *
- *      
+ *  
  *  Revisions:
- *      04/03/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  File Created
+ *      04/08/2021  Added Redux components.
  *******************************************************************************
  */
 
-import * as React from 'react';
+import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-
 import { ListItem, Icon, Divider } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
+import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
-import myAppOutline from '../../myAppConfig.json';
 
-function getNodeByRoute(routes, route) {
-    return routes.filter(
-        function (routes) {
-            return routes.route == route;
-        }
-    );
-}
+import {
+    ABOUT_LOADED,
+    ABOUT_UPDATE_VALUE,
+} from '../constants/actionTypesAbout';
 
-const configSettings = getNodeByRoute(data.routes, 'about');
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
 
-var content = {};
+const mapStateToProps = state => ({
+    ...state.About,
+    masterState: state
+});
 
-for (var i = 0; i < configSettings[0].content.length; i++) {
-    content[configSettings[0].content[i].name] = configSettings[0].content[i].text;
-}
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: ABOUT_LOADED, payload }),
+    onUnload: () =>
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: ABOUT_UPDATE_VALUE, key, value }),
+    onStateToConsole: () =>
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
 
-export default class AboutScreen extends React.Component {
-    constructor() {
-        super();
+const route = 'about';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const content = utility.contentDictionary(configSettings[0].content);
+
+export class AboutScreen extends React.Component {
+    constructor(props) {
+        super(props);
 
         this.getScreen = this.getScreen.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
     }
 
     getScreen(screen) {
@@ -63,7 +70,7 @@ export default class AboutScreen extends React.Component {
 
         console.log("target:", screen);
         navigate(screen);
-    }
+    }    
 
     render() {
         return (
@@ -74,7 +81,12 @@ export default class AboutScreen extends React.Component {
                 <View style={{ borderBottomColor: '#999999', borderBottomWidth: 1, width: '80%'}} />
                 <Text style={styles.sectiontitle}>{content["header2"]}</Text>
                 <Text style={styles.text}>{content["paragraph3"]}</Text>
+                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
+                    <Text style={styles.buttonTextStyle} >Test Redux State</Text>
+                </TouchableOpacity>
             </View>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AboutScreen);

@@ -1,67 +1,89 @@
 /*
  *******************************************************************************
- * 
  *  Filename:   ./src/screens/NotFoundScreen.tsx
- *
  *  Syntax:     NA
- *
- *  Synopsis:   Error screen when a provided route cannot be found.
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Saturday, April 3, 2021 - 4:33 AM (CST)
- *  
+ *  Synopsis:   Screen displayed when a navigation route is not found.
  *  Notes:
- *
- *      
+ *  
  *  Revisions:
- *      04/03/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  File Created
+ *      04/08/2021  Added Redux components.
  *******************************************************************************
  */
 
+import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
 
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from '../../types';
 
-export default function NotFoundScreen({
-  navigation,
-}: StackScreenProps<RootStackParamList, 'NotFound'>) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>This screen doesn't exist.</Text>
-      <TouchableOpacity onPress={() => navigation.replace('HomeScreen')} style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
-      </TouchableOpacity>
-    </View>
-  );
+import data from '../../contentConfig.json';
+import utility from '../common/utility';
+import styles from '../../Styles';
+import images from '../assets/images/images';
+
+import {
+    NOTFOUND_LOADED,
+    NOTFOUND_UPDATE_VALUE,
+} from '../constants/actionTypesNotFound';
+
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
+
+const mapStateToProps = state => ({
+    ...state.NotFound,
+    masterState: state
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: NOTFOUND_LOADED, payload }),
+    onUnload: () =>
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: NOTFOUND_UPDATE_VALUE, key, value }),
+    onStateToConsole: () =>
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
+
+const route = 'notfound';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const content = utility.contentDictionary(configSettings[0].content);
+
+export class NotFoundScreen extends React.Component {
+    constructor() {
+        super();
+
+        this.getScreen = this.getScreen.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
+    }
+
+    getScreen(screen) {
+        const { navigate } = this.props.navigation;
+
+        console.log("target:", screen);
+        navigate(screen);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>This screen doesn't exist.</Text>
+                <TouchableOpacity onPress={() => this.getScreen(item)} style={styles.link}>
+                    <Text style={styles.linkText}>Go to home screen!</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  linkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-});
+export default connect(mapStateToProps, mapDispatchToProps)(NotFoundScreen);

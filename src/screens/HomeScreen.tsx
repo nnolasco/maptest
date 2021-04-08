@@ -1,6 +1,7 @@
 /*
  *******************************************************************************
  *  Filename:   ./src/screens/HomeScreen.tsx
+ *  Syntax:     NA
  *  Synopsis:   Primary application screen with interactive map.
  *  Notes:
  *      04/01/2021  Proof of concept code only. Needs a lot of work to
@@ -14,37 +15,68 @@
 
 import React, { createRef } from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+
+import data from '../../contentConfig.json';
+import utility from '../common/utility';
+import styles from '../../Styles';
+import images from '../assets/images/images';
+
 import MapView, { AnimatedRegion } from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 
-import { connect } from "react-redux";
-import { addTest } from "./actions";
+import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
-    const { test } = state
-    return { test }
-};
+import {
+    HOME_LOADED,
+    HOME_UPDATE_VALUE,
+} from '../constants/actionTypesHome';
+
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
+
+const mapStateToProps = state => ({
+    ...state.Home,
+    masterState: state
+});
 
 const mapDispatchToProps = dispatch => ({
-    onAdd: (payload) =>
-        dispatch({ type: "ADD_TEST", payload }),
+    onLoad: (payload) =>
+        dispatch({ type: HOME_LOADED, payload }),
+    onUnload: () => 
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: HOME_UPDATE_VALUE, key, value }),
+    onStateToConsole: () => 
+        dispatch({ type: COMMON_STATETOCONSOLE })
 });
+
+const route = 'home';
+const configSettings = utility.getNodeByRoute(data.routes, route);
 
 export class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
+
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
     }
 
     render() {
-        const mapRef = createRef();
-
         const INITIAL_REGION = {
             latitude: 37.72825,
             longitude: -122.4324,
             latitudeDelta: 0.25,
             longitudeDelta: 0.15
         };
-
+        const mapRef = createRef();
+    
         const animateToRegion = () => {
             let region = {
                 latitude: 37.72825,
@@ -52,10 +84,10 @@ export class HomeScreen extends React.Component {
                 latitudeDelta: 0.25,
                 longitudeDelta: 0.15
             };
-
+    
             mapRef.current.animateToRegion(region, 2000);
         };
-
+    
         const animateToCurrent = () => {
             navigator.geolocation.getCurrentPosition(
                 position => {
@@ -66,7 +98,7 @@ export class HomeScreen extends React.Component {
                         longitudeDelta: 5
                     };
                     mapRef.current.animateToRegion(region, 2000);
-
+                    
                 },
                 error => console.log(error),
                 {
@@ -76,12 +108,7 @@ export class HomeScreen extends React.Component {
                 }
             );
         };
-
-        const addTest = () => {
-            console.log('add clicked');
-            this.props.addTest('test guy');
-        }
-
+    
         const styles = StyleSheet.create({
             container: {
                 flexDirection: 'row',
@@ -100,7 +127,7 @@ export class HomeScreen extends React.Component {
             buttonText: {
                 color: '#ffffff'
             }
-        });
+        })
 
         return (
             <>
@@ -127,13 +154,12 @@ export class HomeScreen extends React.Component {
                         <TouchableOpacity style={styles.button} onPress={animateToCurrent} >
                             <Text style={styles.buttonText} >Current Location</Text>
                         </TouchableOpacity>
-                </View>
-                <View style={styles.item}>
-                    <TouchableOpacity style={styles.button} onPress={addTest} >
-                        <Text style={styles.buttonText} >Add</Text>
-                    </TouchableOpacity>
-                </View>
-                <Text>test</Text>
+                    </View>
+                    <View style={styles.item}>
+                        <TouchableOpacity style={styles.button} onPress={this.handleStateToConsole} >
+                            <Text style={styles.buttonText} >Redux Test</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </>
         );

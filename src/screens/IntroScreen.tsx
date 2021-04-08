@@ -1,26 +1,12 @@
 /*
  *******************************************************************************
- * 
  *  Filename:   ./src/screens/IntroScreen.tsx
- *
  *  Syntax:     NA
- *
  *  Synopsis:   Introduction Screen with slideshow.
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
- *  
  *  Notes:
  *      
  *  Revisions:
  *      04/01/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
  *******************************************************************************
  */
 
@@ -34,28 +20,47 @@ import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 
-const testvalue = data.testing;
+import { connect } from 'react-redux';
+
+import {
+    ONBOARDING_LOADED,
+    ONBOARDING_UPDATE_VALUE,
+} from '../constants/actionTypesOnboarding';
+
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
+
+const mapStateToProps = state => ({
+    ...state.Onboarding
+});
+
+const mapDispatchToProps = dispatch => ({
+});
 
 const route = 'onboarding';
-
-console.log("enter:", route, ":", testvalue);
-
 const configSettings = utility.getNodeByRoute(data.routes, route);
 const buttons = utility.buttonDictionary(configSettings[0].buttons);
 
 const slides = configSettings[0].slides;
 type Item = typeof slides[0];
 
-export default class IntroScreen extends React.Component {
-    constructor() {
-        super();
+export class IntroScreen extends React.Component {
+    constructor(props) {
+        super(props);
 
-        this._onDone = this._onDone.bind(this);
+        this.renderItem = this.renderItem.bind(this);
+        this.renderNextButton = this.renderNextButton.bind(this);
+        this.renderDoneButton = this.renderDoneButton.bind(this);
+        this.keyExtractor = this.keyExtractor.bind(this);
+        this.onDone = this.onDone.bind(this);
     }
 
     slider: AppIntroSlider | undefined;
 
-    _renderItem = ({ item }: { item: Item }) => {
+    renderItem = ({ item }: { item: Item }) => {
         var slideImage = images.graphics[item.image];
         return (
             <View
@@ -72,7 +77,7 @@ export default class IntroScreen extends React.Component {
         );
     };
 
-    _renderNextButton = () => {
+    renderNextButton = () => {
         return (
             <View style={styles.buttonStyle}>
                 <Text style={styles.buttonTextStyle}>{buttons["next"]}</Text>
@@ -80,7 +85,7 @@ export default class IntroScreen extends React.Component {
         );
     };
 
-    _renderDoneButton = () => {
+    renderDoneButton = () => {
         return (
             <View style={styles.buttonStyle}>
                 <Text style={styles.buttonTextStyle}>{buttons["done"]}</Text>
@@ -88,31 +93,32 @@ export default class IntroScreen extends React.Component {
         );
     };
 
-    _onDone = () => {
+    onDone = () => {
         const { navigate } = this.props.navigation;
 
         navigate('EmailScreen');
     }
 
-    _keyExtractor = (item: Item) => item.key;
+    keyExtractor = (item: Item) => item.key;
 
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <AppIntroSlider
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}
-                    renderDoneButton={this._renderDoneButton}
-                    renderNextButton={this._renderNextButton}
+                    keyExtractor={this.keyExtractor}
+                    renderItem={this.renderItem}
+                    renderDoneButton={this.renderDoneButton}
+                    renderNextButton={this.renderNextButton}
                     bottomButton
                     dotStyle={styles.dotStyle}
                     activeDotStyle={styles.activeDot}
                     ref={(ref) => (this.slider = ref!)}
                     data={slides}
-                    onDone={this._onDone}
+                    onDone={this.onDone}
                 />
             </View>
         );
     }
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(IntroScreen);

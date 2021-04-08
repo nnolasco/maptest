@@ -1,61 +1,63 @@
 /*
  *******************************************************************************
- *
  *  Filename:   ./src/screens/CookieScreen.tsx
- *
  *  Syntax:     NA
- *
- *  Synopsis:   Screen for Home > My App > Cookie Policy
- *    
- *  Author:     Norman J. Nolasco [ PWC ]
- *    
- *  Created:    Saturday, April 3, 2021 - 7:39 AM (CST)
- *  
+ *  Synopsis:   MyApp > Cookie Policy - displays cookie policy legal info
  *  Notes:
- *
- *
+ *  
  *  Revisions:
- *      04/03/2021  NJN     File Created
- *      
- *        
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  File Created
+ *      04/08/2021  Added Redux components.
  *******************************************************************************
  */
 
-import * as React from 'react';
+import React from 'react';
 import { TouchableOpacity, View, Text, ScrollView } from 'react-native';
-
 import { ListItem, Icon, Divider } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
+import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
-import myAppOutline from '../../myAppConfig.json';
 
-function getNodeByRoute(routes, route) {
-    return routes.filter(
-        function (routes) {
-            return routes.route == route;
-        }
-    );
-}
+import {
+    COOKIES_LOADED,
+    COOKIES_UPDATE_VALUE,
+} from '../constants/actionTypesCookies';
 
-const configSettings = getNodeByRoute(data.routes, 'cookies');
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
 
-var content = {};
+const mapStateToProps = state => ({
+    ...state.Cookies,
+    masterState: state
+});
 
-for (var i = 0; i < configSettings[0].content.length; i++) {
-    content[configSettings[0].content[i].name] = configSettings[0].content[i].text;
-}
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: COOKIES_LOADED, payload }),
+    onUnload: () =>
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: COOKIES_UPDATE_VALUE, key, value }),
+    onStateToConsole: () =>
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
 
-export default class CookieScreen extends React.Component {
+const route = 'cookies';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const content = utility.contentDictionary(configSettings[0].content);
+
+export class CookieScreen extends React.Component {
     constructor() {
         super();
 
         this.getScreen = this.getScreen.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
 
     getScreen(screen) {
@@ -63,6 +65,11 @@ export default class CookieScreen extends React.Component {
 
         console.log("target:", screen);
         navigate(screen);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
     }
 
     render() {
@@ -78,3 +85,5 @@ export default class CookieScreen extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CookieScreen);

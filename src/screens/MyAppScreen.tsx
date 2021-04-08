@@ -1,38 +1,24 @@
 /*
  *******************************************************************************
- *
  *  Filename:   ./src/screens/MyAppScreen.tsx
- *
  *  Syntax:     NA
- *
  *  Synopsis:   Screen for Home > My App
- *    
- *  Author:     Norman J. Nolasco [ PWC ]
- *    
- *  Created:    Saturday, April 3, 2021 - 4:33 AM (CST)
- *  
  *  Notes:
- *      04/03/2021  NJN     Routes for this screen are configured under
- *                          ./myAppConfig.json
- *    
+ *      04/03/2021  Routes for this screen are configured under
+ *                  ./myAppConfig.json
  *  Revisions:
- *      04/03/2021  NJN     File Created
- *      
- *        
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/03/2021  File Created
+ *      04/08/2021  Adding Redux components.
  *******************************************************************************
  */
 
-
-import * as React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
-
+import React from 'react';
+import { TouchableOpacity, View, Text, Linking } from 'react-native';
 import { ListItem, Icon, Divider } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
+import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 
@@ -41,23 +27,46 @@ import myAppOutline from '../../myAppConfig.json';
 import NotFoundScreen from './NotFoundScreen';
 import AboutScreen from './AboutScreen';
 
+import {
+    MYAPP_LOADED,
+    MYAPP_UPDATE_VALUE,
+} from '../constants/actionTypesMyApp';
+
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
+
+const mapStateToProps = state => ({
+    ...state.MyApp,
+    masterState: state
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: MYAPP_LOADED, payload }),
+    onUnload: () =>
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: MYAPP_UPDATE_VALUE, key, value }),
+    onStateToConsole: () =>
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
+
+const route = 'myapp';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const content = utility.contentDictionary(configSettings[0].content);
+
 const list = myAppOutline.MyAppOutline;
 
-
-function getNodeByRoute(routes, route) {
-    return routes.filter(
-        function (routes) {
-            return routes.route == route;
-        }
-    );
-}
-const configSettings = getNodeByRoute(data.routes, 'myapp');
-
-export default class MyAppScreen extends React.Component {
+export class MyAppScreen extends React.Component {
     constructor() {
         super();
 
         this.getScreen = this.getScreen.bind(this);
+        this.getLink = this.getLink.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
     
     getScreen(item) {
@@ -65,6 +74,18 @@ export default class MyAppScreen extends React.Component {
 
         console.log("target:", item.screen);
         navigate(item.screen);
+    }
+    
+    getLink(item) {
+        const { navigate } = this.props.navigation;
+
+        console.log("link target:", item.link);
+        Linking.openURL(item.link);
+    }
+
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
     }
 
     render() {
@@ -79,6 +100,18 @@ export default class MyAppScreen extends React.Component {
                                     <Text style={styles.sectiontitle}>{item.name}</Text>
                                     <Divider />
                                 </View>
+                            )
+                        } else if (item.type === 'linkitem') {
+                            return (
+                                <TouchableOpacity key={i} onPress={() => {Linking.openURL(item.linkURL)}}>
+                                    <ListItem bottomDivider>
+                                        <Icon name={item.icon} type={item.iconType} color="#0d527a" />
+                                        <ListItem.Content>
+                                            <ListItem.Title style={{ color: '#0d527a', fontWeight: 'bold' }} >{item.name}</ListItem.Title>
+                                        </ListItem.Content>
+                                        <ListItem.Chevron color="#0d527a" />
+                                    </ListItem>
+                                </TouchableOpacity>
                             )
                         } else {
                             return (
@@ -99,3 +132,5 @@ export default class MyAppScreen extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyAppScreen);

@@ -140,6 +140,12 @@
             "content": []
         },
         {
+            "route": "notfound",
+            "title": "Not Found",
+            "header": "",
+            "content": []
+        },
+        {
             "route": "about",
             "title": "About This App",
             "header": "About This App",
@@ -213,102 +219,6 @@
                 {
                     "name": "paragraph2",
                     "text": "Please enter the email address where your invite was sent:"
-                }
-            ]
-        },
-        {
-            "route": "privacy",
-            "title": "Privacy",
-            "header": "Privacy",
-            "content": [
-                {
-                    "name": "header1",
-                    "text": "Privacy Policy"
-                },
-                {
-                    "name": "paragraph1",
-                    "text": [
-                        "NOTE: BY USING THIS WEBSITE, YOU WILL BE ACCEPTING THESE TERMS OF USE AND THE REFERENCED REQUIREMENTS OF ",
-                        "PG&E'S PRIVACY POLICIES AND SECURITY POLICIES. IF YOU DO NOT ACCEPT THESE TERMS OF USE, DO NOT USE THIS WEBSITE.\n\n",
-                        "Welcome to pge.comOpens in new Window.. This Website, pge.comOpens in new Window., (the \"Website\") is operated by ",
-                        "Pacific Gas and Electric Company (\"PG&E,\" \"the Company,\" \"we,\" \"us\" or \"our\"). We are located at 77 ",
-                        "Beale Street, San Francisco, California 94105; telephone 1-800-743-5000.\n\n",
-                        "Please check these Terms of Use frequently, as we may from time to time unilaterally amend the Terms of Use by",
-                        "posting revised language on the Website. The most up to date version of these Terms of Use will always be ",
-                        "available for your review on the Website. Amendments will become effective at the time they are posted on the ",
-                        "Website. Your continued use of the Website after amendments are posted will constitute your acceptance ",
-                        "of such amendments.\n\n",
-                        "We may at any time modify or discontinue any aspect or component of the Website. If you breach any of these ",
-                        "Terms of Use, we can terminate your right to use the Website. Upon termination, you agree to immediately ",
-                        "delete or destroy any downloaded or printed material obtained from the Website."
-                    ]
-                },
-                {
-                    "name": "header2",
-                    "text": "General"
-                },
-                {
-                    "name": "paragraph2",
-                    "text": [
-                        "Through the Website, we provide a variety of information ", 
-                        "and services to our energy customers and other visitors ", 
-                        "to the Website. You may use the Website solely for your ", 
-                        "own internal lawful purposes and pursuant to these ", 
-                        "Terms of Use. You may view and download material ", 
-                        "displayed on the Website, provided you retain and comply ",
-                        "with all copyright, trademark and other proprietary ",
-                        "notices displayed on the materials. Use of these ",
-                        "materials in publications, other websites or ",
-                        "presentations is prohibited without PG&E's prior written "
-                    ]
-                }
-            ]
-        },
-        {
-            "route": "terms",
-            "title": "Terms",
-            "header": "Terms",
-            "content": [
-                {
-                    "name": "header1",
-                    "text": "Terms of Use"
-                },
-                {
-                    "name": "paragraph1",
-                    "text": [
-                        "NOTE: BY USING THIS WEBSITE, YOU WILL BE ACCEPTING THESE TERMS OF USE AND THE REFERENCED REQUIREMENTS OF ",
-                        "PG&E'S PRIVACY POLICIES AND SECURITY POLICIES. IF YOU DO NOT ACCEPT THESE TERMS OF USE, DO NOT USE THIS WEBSITE.\n\n",
-                        "Welcome to pge.comOpens in new Window.. This Website, pge.comOpens in new Window., (the \"Website\") is operated by ",
-                        "Pacific Gas and Electric Company (\"PG&E,\" \"the Company,\" \"we,\" \"us\" or \"our\"). We are located at 77 ",
-                        "Beale Street, San Francisco, California 94105; telephone 1-800-743-5000.\n\n",
-                        "Please check these Terms of Use frequently, as we may from time to time unilaterally amend the Terms of Use by",
-                        "posting revised language on the Website. The most up to date version of these Terms of Use will always be ",
-                        "available for your review on the Website. Amendments will become effective at the time they are posted on the ",
-                        "Website. Your continued use of the Website after amendments are posted will constitute your acceptance ",
-                        "of such amendments.\n\n",
-                        "We may at any time modify or discontinue any aspect or component of the Website. If you breach any of these ",
-                        "Terms of Use, we can terminate your right to use the Website. Upon termination, you agree to immediately ",
-                        "delete or destroy any downloaded or printed material obtained from the Website."
-                    ]
-                },
-                {
-                    "name": "header2",
-                    "text": "General"
-                },
-                {
-                    "name": "paragraph2",
-                    "text": [
-                        "Through the Website, we provide a variety of information ", 
-                        "and services to our energy customers and other visitors ", 
-                        "to the Website. You may use the Website solely for your ", 
-                        "own internal lawful purposes and pursuant to these ", 
-                        "Terms of Use. You may view and download material ", 
-                        "displayed on the Website, provided you retain and comply ",
-                        "with all copyright, trademark and other proprietary ",
-                        "notices displayed on the materials. Use of these ",
-                        "materials in publications, other websites or ",
-                        "presentations is prohibited without PG&E's prior written "
-                    ]
                 }
             ]
         },

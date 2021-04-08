@@ -1,16 +1,8 @@
 /*
  *******************************************************************************
- * 
  *  Filename:   ./myAppConfig.json
- *
  *  Syntax:     NA
- *
  *  Synopsis:   Configuration settings in JSON format for the MyApp/About section.
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
- *  
  *  Notes:
  *      type:       header = section header text
  *                  item = list item
@@ -25,16 +17,8 @@
  *      
  *      screen:     target screen when item is selected. These can be found
  *                  under ./src/screens
- *      
- *      
  *  Revisions:
- *      04/01/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  File Created
  *******************************************************************************
  */
 
@@ -81,18 +65,18 @@
             "screen": ""
         },
         {
-            "type": "item",
+            "type": "linkitem",
             "name": "Privacy Policy",
             "iconType": "material-community",
             "icon": "lock",
-            "screen": "PrivacyScreen"
+            "linkURL": "https://www.pge.com/en_US/about-pge/company-information/privacy-policy/privacy-policy/privacy-policy.page"
         },
         {
-            "type": "item",
+            "type": "linkitem",
             "name": "Terms of Use",
             "iconType": "material-community",
             "icon": "text",
-            "screen": "TermsScreen"
+            "linkURL": "https://www.pge.com/en_US/about-pge/company-information/disclosure/disclosure.page"
         },
         {
             "type": "item",

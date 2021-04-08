@@ -1,12 +1,12 @@
 /*
  *******************************************************************************
-  *  Filename:   ./src/screens/EmailScreen.tsx
+ *  Filename:   ./src/screens/EmailScreen.tsx
+ *  Syntax:     NA
  *  Synopsis:   Email Sign-In Screen
  *  Notes:
- *      04/01/2021  Currently does no validation check on email.
-  *  Revisions:
- *      04/01/2021  File Created
- *      04/07/2021  Added Redux Components
+ *      04/01/2021  NJN     Currently does no validation check on email.
+ *  Revisions:
+ *      04/01/2021  NJN     File Created
  *******************************************************************************
  */
 
@@ -47,6 +47,11 @@ const mapDispatchToProps = dispatch => ({
         dispatch({ type: COMMON_STATETOCONSOLE })
 });
 
+const route = 'email';
+const configSettings = utility.getNodeByRoute(data.routes, route);
+const buttons = utility.buttonDictionary(configSettings[0].buttons);
+const content = utility.contentDictionary(configSettings[0].content);
+
 export class EmailScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -84,11 +89,6 @@ export class EmailScreen extends React.Component {
     }
 
     render() {
-        const route = 'email';
-        const configSettings = utility.getNodeByRoute(data.routes, route);
-        const buttons = utility.buttonDictionary(configSettings[0].buttons);
-        const content = utility.contentDictionary(configSettings[0].content);
-
         return (
             <View style={styles.containerLeft}>
                 <Text style={styles.sectiontitle}>{content["header"]}</Text>
@@ -104,13 +104,13 @@ export class EmailScreen extends React.Component {
                 />
                 <View style={{ paddingLeft: 40, height: 30 }}>
                     <Text style={styles.inputLabel, {color: '#990000'}}>{this.props.error}</Text>
-            </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSubmit} >
-                <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
-                <Text style={styles.buttonTextStyle} >Test Redux State</Text>
-            </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSubmit} >
+                    <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
+                    <Text style={styles.buttonTextStyle} >Test Redux State</Text>
+                </TouchableOpacity>
             </View >
         );
     }

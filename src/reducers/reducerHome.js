@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
  *  Filename:   ./src/reducers/reducerHome.js
- *  Synopsis:   Reducers for Home
+ *  Synopsis:   Reducers for HomeScreen
  *  Notes:
  *  
  *  Revisions:
@@ -17,6 +17,9 @@ import {
 } from '../constants/actionTypesHome';
 
 const defaultState = {
+    locations: [],
+    displayFilters: false,
+    displayLocationList: false
 };
 
 export default (state = defaultState, action) => {
