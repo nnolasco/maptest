@@ -1,31 +1,16 @@
 /*
  *******************************************************************************
- * 
- *  Filename:   ./src/screens/EmailScreen.tsx
- *
- *  Syntax:     NA
- *
+  *  Filename:   ./src/screens/EmailScreen.tsx
  *  Synopsis:   Email Sign-In Screen
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Thursday, April 1, 2021 - 12:42 AM (CST)
- *  
  *  Notes:
- *      04/01/2021  NJN     Currently does no validation check on email.
- *      
- *  Revisions:
- *      04/01/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
+ *      04/01/2021  Currently does no validation check on email.
+  *  Revisions:
+ *      04/01/2021  File Created
+ *      04/07/2021  Added Redux Components
  *******************************************************************************
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, View, Image, TextInput } from 'react-native';
 
 import data from '../../contentConfig.json';
@@ -33,54 +18,102 @@ import utility from '../common/utility';
 import styles from '../../Styles';
 import images from '../assets/images/images';
 
-const EmailScreen = (props) => {
-    const route = 'signin';
-    const configSettings = utility.getNodeByRoute(data.routes, route);
-    const buttons = utility.buttonDictionary(configSettings[0].buttons);
-    const content = utility.contentDictionary(configSettings[0].content);
+import { connect } from 'react-redux';
 
-    const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
+import {
+    ONBOARDING_LOADED,
+    ONBOARDING_UPDATE_VALUE,
+} from '../constants/actionTypesOnboarding';
 
-    isEmailValid = () => {
-        let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(String(email).toLowerCase());
+import {
+    COMMON_UPDATE_VALUE,
+    COMMON_STATETOCONSOLE,
+    COMPONENT_UNLOAD
+} from '../constants/actionTypesCommon';
+
+const mapStateToProps = state => ({
+    ...state.Onboarding,
+    masterState: state
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload) =>
+        dispatch({ type: ONBOARDING_LOADED, payload }),
+    onUnload: () => 
+        dispatch({ type: COMPONENT_UNLOAD }),
+    onUpdateValue: (key, value) =>
+        dispatch({ type: ONBOARDING_UPDATE_VALUE, key, value }),
+    onStateToConsole: () => 
+        dispatch({ type: COMMON_STATETOCONSOLE })
+});
+
+export class EmailScreen extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.isEmailValid = this.isEmailValid.bind(this);
+        this.handleChangeText = this.handleChangeText.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
 
-    handleSubmit = () => {
-        const { navigate } = props.navigation;
+    isEmailValid = () => {
+        /* This pattern is essentially "alphanumeric@alphanumeric.alphanumeric" */
+        let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(String(this.props.email).toLowerCase());
+    }
 
-        console.log('email submit:', email);
+    handleChangeText(value) {
+        this.props.onUpdateValue('email', value);
+        this.props.onUpdateValue('error', '');
+    }
 
-        if (isEmailValid()) {
+    handleSubmit() {
+        const { navigate } = this.props.navigation;
+        if (this.isEmailValid()) {
+            this.props.onUpdateValue('error', '');
             navigate('RootNavigator');
         } else {
-            setError('invalid email format');
+            this.props.onUpdateValue('error', 'bad email format');
         }
     }
 
-    return (
-        <View style={styles.containerLeft}>
-            <Text style={styles.sectiontitle}>{content["header"]}</Text>
-            <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
-            <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
+    handleStateToConsole() {
+        /* for viewing complete redux structure in console */
+        console.log(this.props.masterState);
+    }
 
-            <Text style={styles.inputLabel}>Email</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={email => { setError(''); setEmail(email); }}
-                placeholder="Email Address"
-                value={email}
-                defaultValue={email}
-            />
-            <View style={{ paddingLeft: 40, height: 30}}>
-                <Text style={styles.inputLabel, {color: '#990000'}}>{error}</Text>
+    render() {
+        const route = 'email';
+        const configSettings = utility.getNodeByRoute(data.routes, route);
+        const buttons = utility.buttonDictionary(configSettings[0].buttons);
+        const content = utility.contentDictionary(configSettings[0].content);
+
+        return (
+            <View style={styles.containerLeft}>
+                <Text style={styles.sectiontitle}>{content["header"]}</Text>
+                <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
+                <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
+
+                <Text style={styles.inputLabel}>Email</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={this.handleChangeText}
+                    placeholder="Email Address"
+                    defaultValue={this.props.email}
+                />
+                <View style={{ paddingLeft: 40, height: 30 }}>
+                    <Text style={styles.inputLabel, {color: '#990000'}}>{this.props.error}</Text>
             </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={handleSubmit} >
+            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSubmit} >
                 <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
             </TouchableOpacity>
-        </View>
-    );
+            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
+                <Text style={styles.buttonTextStyle} >Test Redux State</Text>
+            </TouchableOpacity>
+            </View >
+        );
+    }
 }
 
-export default EmailScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(EmailScreen);

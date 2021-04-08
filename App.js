@@ -1,28 +1,12 @@
 /*
  *******************************************************************************
- * 
  *  Filename:   ./App.js
- *
- *  Syntax:     NA
- *
  *  Synopsis:   Application entry point. Contains all app screens inside
  *              <SafeAreaProvider>
- *  
- *  Author:     Norman J. Nolasco [ PWC ]
- *  
- *  Created:    Saturday, April 3, 2021 - 2:14 PM (CST)
- *  
  *  Notes:
- *      
  *      
  *  Revisions:
  *      04/03/2021  NJN     File Created
- *      
- *      
- *  Copyright (c) 2021 - PricewaterhouseCoopers - All Rights Reserved.
- *  Unauthorized copying of this file via any medium is strictly prohibited.
- *  Proprietary and Confidential.
- *
  *******************************************************************************
  */
 
@@ -35,21 +19,29 @@ import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import data from './contentConfig.json';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './src/reducer';
+
+const store = createStore(reducer);
+
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+    const isLoadingComplete = useCachedResources();
+    const colorScheme = useColorScheme();
 
-  const testvalue = data.testing;
-  console.log(testvalue); // console testing
+    const testvalue = data.testing;
+    console.log(testvalue); // console testing
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
+    if (!isLoadingComplete) {
+        return null;
+    } else {
+        return (
+            <Provider store={store}>
+                <SafeAreaProvider>
+                    <Navigation colorScheme={colorScheme} />
+                    <StatusBar />
+                </SafeAreaProvider>
+            </Provider>
+        );
+    }
 }
