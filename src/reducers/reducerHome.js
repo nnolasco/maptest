@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- *  Filename:   ./src/reducers/reducerOnboarding.js
- *  Synopsis:   Reducers for Onboarding
+ *  Filename:   ./src/reducers/reducerHome.js
+ *  Synopsis:   Reducers for Home
  *  Notes:
  *  
  *  Revisions:
@@ -10,37 +10,32 @@
  */
 
 import {
-    ONBOARDING_LOADED,
-    ONBOARDING_UPDATE_VALUE,
-    ONBOARDING_UPDATE_ARRAY,
-    ONBOARDING_UNLOADED
-} from '../constants/actionTypesOnboarding';
+    HOME_LOADED,
+    HOME_UPDATE_VALUE,
+    HOME_UPDATE_ARRAY,
+    HOME_UNLOADED
+} from '../constants/actionTypesHome';
 
 const defaultState = {
-    email: '',
-    usertype: '',
-    error: ''
 };
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case ONBOARDING_LOADED:
+        case HOME_LOADED:
             return {
-                ...state,
-                errors: action.payload.error ? action.payload.error : '',
-                email: action.payload.email ? action.payload.email : ''
+                ...state
             }
-        case ONBOARDING_UPDATE_VALUE:
+        case HOME_UPDATE_VALUE:
             return {
                 ...state,
                 [action.key]: action.value ? action.value : '',
             }
-        case ONBOARDING_UPDATE_ARRAY:
+        case HOME_UPDATE_ARRAY:
             return {
                 ...state,
                 [action.key]: action.payload ? action.payload : []
             }
-        case ONBOARDING_UNLOADED:
+        case HOME_UNLOADED:
             return {};
         default:
             return state;

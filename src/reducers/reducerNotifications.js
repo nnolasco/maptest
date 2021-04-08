@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- *  Filename:   ./src/reducers/reducerOnboarding.js
- *  Synopsis:   Reducers for Onboarding
+ *  Filename:   ./src/reducers/reducerNotifications.js
+ *  Synopsis:   Reducers for Notifications
  *  Notes:
  *  
  *  Revisions:
@@ -10,37 +10,32 @@
  */
 
 import {
-    ONBOARDING_LOADED,
-    ONBOARDING_UPDATE_VALUE,
-    ONBOARDING_UPDATE_ARRAY,
-    ONBOARDING_UNLOADED
-} from '../constants/actionTypesOnboarding';
+    NOTIFICATIONS_LOADED,
+    NOTIFICATIONS_UPDATE_VALUE,
+    NOTIFICATIONS_UPDATE_ARRAY,
+    NOTIFICATIONS_UNLOADED
+} from '../constants/actionTypesNotifications';
 
 const defaultState = {
-    email: '',
-    usertype: '',
-    error: ''
 };
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case ONBOARDING_LOADED:
+        case NOTIFICATIONS_LOADED:
             return {
-                ...state,
-                errors: action.payload.error ? action.payload.error : '',
-                email: action.payload.email ? action.payload.email : ''
+                ...state
             }
-        case ONBOARDING_UPDATE_VALUE:
+        case NOTIFICATIONS_UPDATE_VALUE:
             return {
                 ...state,
                 [action.key]: action.value ? action.value : '',
             }
-        case ONBOARDING_UPDATE_ARRAY:
+        case NOTIFICATIONS_UPDATE_ARRAY:
             return {
                 ...state,
                 [action.key]: action.payload ? action.payload : []
             }
-        case ONBOARDING_UNLOADED:
+        case NOTIFICATIONS_UNLOADED:
             return {};
         default:
             return state;

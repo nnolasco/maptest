@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- *  Filename:   ./src/reducers/reducerOnboarding.js
- *  Synopsis:   Reducers for Onboarding
+ *  Filename:   ./src/reducers/reducerNotFound.js
+ *  Synopsis:   Reducers for NotFound
  *  Notes:
  *  
  *  Revisions:
@@ -10,37 +10,32 @@
  */
 
 import {
-    ONBOARDING_LOADED,
-    ONBOARDING_UPDATE_VALUE,
-    ONBOARDING_UPDATE_ARRAY,
-    ONBOARDING_UNLOADED
-} from '../constants/actionTypesOnboarding';
+    NOTFOUND_LOADED,
+    NOTFOUND_UPDATE_VALUE,
+    NOTFOUND_UPDATE_ARRAY,
+    NOTFOUND_UNLOADED
+} from '../constants/actionTypesNotFound';
 
 const defaultState = {
-    email: '',
-    usertype: '',
-    error: ''
 };
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case ONBOARDING_LOADED:
+        case NOTFOUND_LOADED:
             return {
-                ...state,
-                errors: action.payload.error ? action.payload.error : '',
-                email: action.payload.email ? action.payload.email : ''
+                ...state
             }
-        case ONBOARDING_UPDATE_VALUE:
+        case NOTFOUND_UPDATE_VALUE:
             return {
                 ...state,
                 [action.key]: action.value ? action.value : '',
             }
-        case ONBOARDING_UPDATE_ARRAY:
+        case NOTFOUND_UPDATE_ARRAY:
             return {
                 ...state,
                 [action.key]: action.payload ? action.payload : []
             }
-        case ONBOARDING_UNLOADED:
+        case NOTFOUND_UNLOADED:
             return {};
         default:
             return state;
