@@ -13,13 +13,12 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, View, Text, Linking } from 'react-native';
+import { SafeAreaView, ScrollView, TouchableOpacity, View, Text, Linking } from 'react-native';
 import { ListItem, Icon, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import myAppOutline from '../../myAppConfig.json';
@@ -37,6 +36,15 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledListItem } from '../components/StyledListItem';
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.MyApp,
@@ -90,45 +98,30 @@ export class MyAppScreen extends React.Component {
 
     render() {
         return (
-            <View>
-
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <ScrollView>
                 {
                     list.map((item, i) => {
                         if (item.type === 'header') {
                             return (
                                 <View key={i}>
-                                    <Text style={styles.sectiontitle}>{item.name}</Text>
+                                    <StyledText textSize="listheader" textAlign="left">{item.name}</StyledText>
                                     <Divider />
                                 </View>
                             )
                         } else if (item.type === 'linkitem') {
                             return (
-                                <TouchableOpacity key={i} onPress={() => {Linking.openURL(item.linkURL)}}>
-                                    <ListItem bottomDivider>
-                                        <Icon name={item.icon} type={item.iconType} color="#0d527a" />
-                                        <ListItem.Content>
-                                            <ListItem.Title style={{ color: '#0d527a', fontWeight: 'bold' }} >{item.name}</ListItem.Title>
-                                        </ListItem.Content>
-                                        <ListItem.Chevron color="#0d527a" />
-                                    </ListItem>
-                                </TouchableOpacity>
+                                <StyledListItem keyValue={i} icon={item.icon} iconType={item.iconType} label={item.name} onPress={() => {Linking.openURL(item.linkURL)}}/>
                             )
                         } else {
                             return (
-                                <TouchableOpacity key={i} onPress={() => this.getScreen(item)}>
-                                    <ListItem bottomDivider>
-                                        <Icon name={item.icon} type={item.iconType} color="#0d527a" />
-                                        <ListItem.Content>
-                                            <ListItem.Title style={{ color: '#0d527a', fontWeight: 'bold' }} >{item.name}</ListItem.Title>
-                                        </ListItem.Content>
-                                        <ListItem.Chevron color="#0d527a" />
-                                    </ListItem>
-                                </TouchableOpacity>
+                                <StyledListItem keyValue={i} icon={item.icon} iconType={item.iconType} label={item.name} onPress={() => this.getScreen(item)}/>
                             )
                         }
                     })
                 }
-            </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }

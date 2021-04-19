@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
  *  Filename:   ./src/reducers/reducerOnboarding.js
- *  Synopsis:   Reducers for Onboarding
+ *  Synopsis:   Reducers for Onboarding Screens (Intro, Email)
  *  Notes:
  *  
  *  Revisions:

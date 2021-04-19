@@ -11,19 +11,25 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, Text, View, Image, TextInput } from 'react-native';
+import { SafeAreaView, ImageBackground, TouchableOpacity, Text, View, Image, TextInput } from 'react-native';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledInput } from '../components/StyledInput';
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
 
 import { connect } from 'react-redux';
 
 import {
-    ONBOARDING_LOADED,
-    ONBOARDING_UPDATE_VALUE,
-} from '../constants/actionTypesOnboarding';
+    EMAIL_LOADED,
+    EMAIL_UPDATE_VALUE,
+} from '../constants/actionTypesEmail';
 
 import {
     COMMON_UPDATE_VALUE,
@@ -31,18 +37,20 @@ import {
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
 
+const {tailwind, getColor} = create(styles);
+
 const mapStateToProps = state => ({
-    ...state.Onboarding,
+    ...state.Email,
     masterState: state
 });
 
 const mapDispatchToProps = dispatch => ({
     onLoad: (payload) =>
-        dispatch({ type: ONBOARDING_LOADED, payload }),
+        dispatch({ type: EMAIL_LOADED, payload }),
     onUnload: () => 
         dispatch({ type: COMPONENT_UNLOAD }),
     onUpdateValue: (key, value) =>
-        dispatch({ type: ONBOARDING_UPDATE_VALUE, key, value }),
+        dispatch({ type: EMAIL_UPDATE_VALUE, key, value }),
     onStateToConsole: () => 
         dispatch({ type: COMMON_STATETOCONSOLE })
 });
@@ -56,30 +64,51 @@ export class EmailScreen extends React.Component {
     constructor(props) {
         super(props);
 
-        this.isEmailValid = this.isEmailValid.bind(this);
-        this.handleChangeText = this.handleChangeText.bind(this);
+        this.isEmailValidFormat = this.isEmailValidFormat.bind(this);
+        this.isEmailOnList = this.isEmailOnList.bind(this);
+        this.handleChangeEmailText = this.handleChangeEmailText.bind(this);
+        this.handleChangeUserTypeText = this.handleChangeUserTypeText.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
 
-    isEmailValid = () => {
+    isEmailValidFormat(email){
         /* This pattern is essentially "alphanumeric@alphanumeric.alphanumeric" */
         let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(String(this.props.email).toLowerCase());
+        return pattern.test(String(email).toLowerCase());
     }
 
-    handleChangeText(value) {
+    isEmailOnList(email) {
+        return email.toLowerCase() === "test@test.com" ? true : false;
+    }
+
+    handleChangeEmailText(value) {
         this.props.onUpdateValue('email', value);
         this.props.onUpdateValue('error', '');
     }
 
+    handleChangeUserTypeText(value) {
+        this.props.onUpdateValue('usertype', value);
+    }
+
     handleSubmit() {
         const { navigate } = this.props.navigation;
-        if (this.isEmailValid()) {
-            this.props.onUpdateValue('error', '');
-            navigate('RootNavigator');
+        const email = this.props.email || '';
+        var emailValid = false;
+
+        if (this.isEmailValidFormat(email)) {
+            emailValid = true;
         } else {
-            this.props.onUpdateValue('error', 'bad email format');
+            emailValid = false;
+            this.props.onUpdateValue('error', 'Valid email required');
+        }
+
+        if (emailValid) {
+            if (this.isEmailOnList(email)) {
+                navigate('RootNavigator');
+            } else {
+                navigate('JoinWaitlistScreen');
+            }
         }
     }
 
@@ -89,29 +118,33 @@ export class EmailScreen extends React.Component {
     }
 
     render() {
-        return (
-            <View style={styles.containerLeft}>
-                <Text style={styles.sectiontitle}>{content["header"]}</Text>
-                <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
-                <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
 
-                <Text style={styles.inputLabel}>Email</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={this.handleChangeText}
-                    placeholder="Email Address"
-                    defaultValue={this.props.email}
-                />
-                <View style={{ paddingLeft: 40, height: 30 }}>
-                    <Text style={styles.inputLabel, {color: '#990000'}}>{this.props.error}</Text>
-                </View>
-                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSubmit} >
-                    <Text style={styles.buttonTextStyle} >{buttons["submit"]}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
-                    <Text style={styles.buttonTextStyle} >Test Redux State</Text>
-                </TouchableOpacity>
-            </View >
+        const error = this.props.error || null;
+        return (
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <ImageBackground source={images.graphics["onboardbg"]} style={{flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+                    <View style={tailwind('pge-tw-flex-container-1 pge-tw-m-6 pge-tw-p-6 pge-tw-rounded-xl pge-tw-bg-white')}>
+                        <StyledText flex="1" textSize="header" textAlign="left">{content["header"]}</StyledText>
+                        <StyledText flex="2" textSize="normal" textAlign="left">{content["paragraph1"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-mt-6')}>
+                            <StyledInput label="Email Address" placeholder="Email Address" defaultValue={this.props.email} 
+                            onChangeText={this.handleChangeEmailText} required="True" error={error} />
+                            
+                            <StyledInput label="What best describes you?" placeholder="Select One" defaultValue={this.props.usertype} 
+                            onChangeText={this.handleChangeUserTypeText} required="True" />
+
+                            <StyledText flex="1" textSize="normal" textAlign="left"><Text style={tailwind('pge-tw-text-red')}>*</Text> Required Field</StyledText>
+                        </View>
+                        <View style={tailwind('pge-tw-mt-8')}>
+                            <StyledButton appearance="primary" size="full-width" label={buttons["submit"]} onPress={this.handleSubmit} />
+{/*}
+                            <StyledButton appearance="primary" size="full-width" label={"Test Redux"} onPress={this.handleStateToConsole} />
+*/}
+                        </View>
+                    </View>
+                </ImageBackground>
+            </SafeAreaView>
         );
     }
 }

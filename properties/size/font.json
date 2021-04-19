@@ -1,0 +1,31 @@
+{
+  "size": {
+    "font": {
+      "xsmall" : {
+        "value": "0.5",
+        "comment": "the smallest size of the font"
+      },
+      "small" : {
+        "value": "0.75",
+        "comment": "the small size of the font. 12px"
+      },
+      "medium-small": {
+        "value": "0.875",
+        "comment": "the medium size of the font, 14px"
+      },
+      "medium": {
+        "value": "1.25",
+        "comment": "the medium size of the font, 20px"
+      },
+      "large" : {
+        "value": "2",
+        "comment": "the large size of the font. 32px"
+      },
+      "base"  : {
+        "value": "1",
+        "comment": "the base size of the font. 16px"
+      }
+    }
+  }
+}
+

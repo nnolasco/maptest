@@ -12,13 +12,14 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
-import { ListItem, Icon, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { SafeAreaView, ScrollView, TouchableOpacity, View, Text, Image } from 'react-native';
+import { ListItem, Icon, Divider } from 'react-native-elements';
+import * as Device from 'expo-device';
+import * as Application from 'expo-application';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import {
@@ -31,6 +32,14 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.About,
@@ -73,18 +82,59 @@ export class AboutScreen extends React.Component {
     }    
 
     render() {
+        var pageImage = images.graphics["about1"];
+
         return (
-            <View style={styles.container}>
-                <Text style={styles.sectiontitle}>{content["header1"]}</Text>
-                <Text style={styles.text}>{content["paragraph1"]}</Text>
-                <Text style={styles.text}>{content["paragraph2"]}</Text>
-                <View style={{ borderBottomColor: '#999999', borderBottomWidth: 1, width: '80%'}} />
-                <Text style={styles.sectiontitle}>{content["header2"]}</Text>
-                <Text style={styles.text}>{content["paragraph3"]}</Text>
-                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleStateToConsole} >
-                    <Text style={styles.buttonTextStyle} >Test Redux State</Text>
-                </TouchableOpacity>
-            </View>
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <ScrollView>
+                    <View style={tailwind('pge-tw-flex-container-1 pge-tw-p-6')}>
+                        <StyledText textSize="header" textAlign="left">{content["header1"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph1"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-separator pge-tw-w-full pge-tw-my-4')} />
+
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header2"]}</StyledText>
+                        
+                        <Image style={tailwind('pge-tw-my-4')} source={pageImage} />
+
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph2"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-separator pge-tw-w-full pge-tw-my-4')} />
+
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header3"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph3"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-separator pge-tw-w-full pge-tw-my-4')} />
+
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header4"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph4"]}</StyledText>
+                        
+                        <View style={tailwind('pge-tw-separator pge-tw-w-full pge-tw-my-4')} />
+
+                        <StyledText textSize="sectionheader" textAlign="left">Application Information</StyledText>
+
+                        <StyledText textSize="normal" textAlign="left">
+                            <StyledText textSize="sectionheader" textAlign="left">App Version: </StyledText>
+                            {Application.nativeApplicationVersion}
+                        </StyledText>
+
+                        <StyledText textSize="normal" textAlign="left">
+                            <StyledText textSize="sectionheader" textAlign="left">Platform Version: </StyledText>
+                            {Application.nativeBuildVersion}
+                        </StyledText>
+
+                        <StyledText textSize="normal" textAlign="left">
+                            <StyledText textSize="sectionheader" textAlign="left">OS Version: </StyledText>
+                            {Device.osName} {Device.osVersion}
+                        </StyledText>
+
+                        <StyledText textSize="normal" textAlign="left">
+                            <StyledText textSize="sectionheader" textAlign="left">Device Type: </StyledText>
+                            {Device.manufacturer} {Device.modelName}
+                        </StyledText>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }

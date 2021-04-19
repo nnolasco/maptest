@@ -12,13 +12,12 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, View, Text, ScrollView } from 'react-native';
+import { SafeAreaView, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import { ListItem, Icon, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import {
@@ -31,6 +30,14 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.Cookies,
@@ -74,14 +81,38 @@ export class CookieScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.scrollView}>
-                <View style={styles.containerLeft}>
-                    <Text style={styles.sectiontitle}>{content["header1"]}</Text>
-                    <Text style={styles.textLeft}>{content["paragraph1"]}</Text>
-                    <Text style={styles.sectiontitle}>{content["header2"]}</Text>
-                    <Text style={styles.textLeft}>{content["paragraph2"]}</Text>
-                </View>
-            </ScrollView>
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <ScrollView>
+                    <View style={tailwind('pge-tw-flex-container-1 pge-tw-p-8')}>
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header1"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph1"]}</StyledText>
+
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header2"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-flex-container-1 pge-tw-flex-row')}>
+                            <View style={tailwind('pge-tw-w-3/5')}>
+                                <StyledText textSize="sectionheader" textAlign="left">Strictly Necessary Cookies</StyledText>
+                            </View>
+                            <View style={tailwind('pge-tw-w-2/5')}>
+                                <StyledText textSize="normal" textAlign="right">Always Active</StyledText>
+                            </View>
+                        </View>
+
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph2"]}</StyledText>
+
+                        <View style={tailwind('pge-tw-flex-container-1 pge-tw-flex-row')}>
+                            <View style={tailwind('pge-tw-w-1/2')}>
+                                <StyledText textSize="sectionheader" textAlign="left">{content["header3"]}</StyledText>
+                            </View>
+                            <View style={tailwind('pge-tw-w-1/2')}>
+                                <StyledText textSize="normal" textAlign="right">Cookie Toggle</StyledText>
+                            </View>
+                        </View>
+
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph3"]}</StyledText>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }

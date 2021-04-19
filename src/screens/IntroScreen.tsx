@@ -6,18 +6,18 @@
  *  Notes:
  *      
  *  Revisions:
- *      04/01/2021  NJN     File Created
+ *      04/01/2021  File Created
+ *      04/13/2021  Replaced styles with Tailwind Styles.
  *******************************************************************************
  */
 
 import * as React from 'react';
-import { TouchableOpacity, SafeAreaView, Text, View, Image } from 'react-native';
+import { SafeAreaView, TouchableOpacity, Text, View, Image } from 'react-native';
 
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import { connect } from 'react-redux';
@@ -32,6 +32,15 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
+import { StyledSlideButton } from '../components/StyledSlideButton';
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.Onboarding
@@ -63,33 +72,25 @@ export class IntroScreen extends React.Component {
     renderItem = ({ item }: { item: Item }) => {
         var slideImage = images.graphics[item.image];
         return (
-            <View
-                style={{
-                    flex: 1,
-                    backgroundColor: item.backgroundColor,
-                }} >
-                <SafeAreaView style={styles.slide}>
-                    <Image source={slideImage} style={styles.slideImage} />
-                    <Text style={styles.slideTitle}>{item.title}</Text>
-                    <Text style={styles.slideText}>{item.text}</Text>
-                </SafeAreaView>
+            <View style={tailwind('pge-tw-flex-container-1 pge-tw-flex-col pge-tw-bg-white pge-tw-max-h-4/5')} >
+                <Image source={slideImage} style={tailwind('pge-tw-flex-container-5 pge-tw-w-full pge-tw-h-full pge-tw-image-resize-contain')} />
+                <View style={tailwind('pge-tw-px-4')}>
+                    <StyledText flex="1" textSize="header" textAlign="center">{item.title}</StyledText>
+                    <StyledText flex="1" textSize="normal" textAlign="center">{item.text}</StyledText>
+                </View>
             </View>
         );
     };
 
     renderNextButton = () => {
         return (
-            <View style={styles.buttonStyle}>
-                <Text style={styles.buttonTextStyle}>{buttons["next"]}</Text>
-            </View>
+            <StyledSlideButton appearance="primary" size="full-width" label={buttons["next"]} />
         );
     };
 
     renderDoneButton = () => {
         return (
-            <View style={styles.buttonStyle}>
-                <Text style={styles.buttonTextStyle}>{buttons["done"]}</Text>
-            </View>
+            <StyledSlideButton appearance="primary" size="full-width" label={buttons["done"]} />
         );
     };
 
@@ -103,20 +104,22 @@ export class IntroScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <AppIntroSlider
-                    keyExtractor={this.keyExtractor}
-                    renderItem={this.renderItem}
-                    renderDoneButton={this.renderDoneButton}
-                    renderNextButton={this.renderNextButton}
-                    bottomButton
-                    dotStyle={styles.dotStyle}
-                    activeDotStyle={styles.activeDot}
-                    ref={(ref) => (this.slider = ref!)}
-                    data={slides}
-                    onDone={this.onDone}
-                />
-            </View>
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <View style={tailwind('pge-tw-flex-container-1 pge-tw-p-2')}>
+                    <AppIntroSlider
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem}
+                        renderDoneButton={this.renderDoneButton}
+                        renderNextButton={this.renderNextButton}
+                        bottomButton
+                        dotStyle={tailwind('pge-tw-bg-blue-900 pge-tw-bg-opacity-20 pge-tw-w-4 pge-tw-h-4 pge-tw-mx-3 pge-tw-border-radius-10')}
+                        activeDotStyle={tailwind('pge-tw-bg-blue-900 pge-tw-bg-opacity-90 pge-tw-w-4 pge-tw-h-4 pge-tw-mx-3 pge-tw-border-radius-10')}
+                        ref={(ref) => (this.slider = ref!)}
+                        data={slides}
+                        onDone={this.onDone}
+                    />
+                </View>
+            </SafeAreaView>
         );
     }
 }

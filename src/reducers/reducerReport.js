@@ -17,6 +17,8 @@ import {
 } from '../constants/actionTypesReport';
 
 const defaultState = {
+    status: '',
+    base64data: ''
 };
 
 export default (state = defaultState, action) => {

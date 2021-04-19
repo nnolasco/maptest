@@ -1,0 +1,41 @@
+{
+    {
+        "defaults": {
+            "pge.mobile.view.viewInfo.geoRegion": "us",
+            "pge.mobile.view.viewInfo.language": "en_US"
+        },
+        "home": {
+            "state": "home",
+            "context": {
+                "pge.mobile.view.viewInfo.viewName": "home",
+                "pge.mobile.view.category.viewType": "",
+                "pge.mobile.view.attributes.viewCategory": "native mobile screen view"
+            }
+        },
+        "login": {
+            "state": "login",
+            "context": {
+                "pge.mobile.view.viewInfo.viewName": "login",
+                "pge.mobile.view.category.viewType": "",
+                "pge.mobile.view.attributes.viewCategory": "native mobile screen view"
+            }
+        },
+        "terms": {
+            "state": "Terms and Conditions Web View",
+            "context": {
+                "pge.mobile.view.viewInfo.viewName": "terms and conditions web view",
+                "pge.mobile.view.category.viewType": "support",
+                "pge.mobile.view.attributes.viewCategory": ""
+            }
+        },
+        "privacy": {
+            "state": "Privacy Policy Web View",
+            "context": {
+                "pge.mobile.view.viewInfo.viewName": "privacy policy web view",
+                "pge.mobile.view.category.viewType": "legal",
+                "pge.mobile.view.attributes.viewCategory": ""
+            }
+        }
+    }
+    
+}

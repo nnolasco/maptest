@@ -32,11 +32,23 @@
 
 const images = {
     "icons": {
-        "default": require('./icon.png')
+        "default": require('./icon.png'),
+        "hiw1": require('./icon-hiw-1.png'),
+        "hiw2": require('./icon-hiw-2.png'),
+        "hiw3": require('./icon-hiw-3.png'),
+        "requipment": require('./icon-equipment.png'),
+        "rother": require('./icon-other.png'),
+        "rpowerline": require('./icon-powerline.png'),
+        "rpowerpole": require('./icon-powerpole.png'),
+        "rtreevine": require('./icon-treevine.png'),
     },
     "graphics": {
-        "onboard-1": require('./onboard-1.png'),
-        "onboard-2": require('./onboard-2.png')
+        "onboardbg": require('./pic-background.png'),
+        "onboard1": require('./pic-onboard-1.png'),
+        "onboard2": require('./pic-onboard-2.png'),
+        "onboard3": require('./pic-onboard-3.png'),
+        "onboard4": require('./pic-onboard-4.png'),
+        "about1": require('./about-1.png'),
     }
 };
 

@@ -1,0 +1,9 @@
+{
+  "color": {
+    "font": {
+      "base"     : { "value": "{color.base.black.value}" },
+      "primary": { "value": "{color.base.blue.dark.value}" },
+      "primary-alt": { "value": "{color.base.yellow.dark.value}" }
+    }
+  }
+}

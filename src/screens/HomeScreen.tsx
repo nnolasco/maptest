@@ -14,11 +14,11 @@
  */
 
 import React, { createRef } from "react";
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { SafeAreaView, StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { Icon } from 'react-native-elements';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import MapView, { AnimatedRegion } from "react-native-map-clustering";
@@ -36,6 +36,13 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+import { StyledButton } from '../components/StyledButton';
+import { getIconMap } from "ionicons/dist/types/components/icon/utils";
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.Home,
@@ -108,33 +115,24 @@ export class HomeScreen extends React.Component {
                 }
             );
         };
-    
-        const styles = StyleSheet.create({
-            container: {
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                alignItems: 'flex-start', // if you want to fill rows left to right
-            },
-            item: {
-                padding: 5,
-                width: '50%' // is 50% of container width
-            },
-            button: {
-                alignItems: 'center',
-                backgroundColor: '#1f68e2',
-                padding: 10
-            },
-            buttonText: {
-                color: '#ffffff'
-            }
-        })
 
         return (
-            <>
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <View style={tailwind('pge-tw-flex-row')}>
+                    <View style={tailwind('pge-tw-w-1/3 pge-tw-px-1')}>
+                        <StyledButton appearance="primary" size="small" label={"local"} onPress={animateToRegion} />
+                    </View>
+                    <View style={tailwind('pge-tw-w-1/3 pge-tw-px-1 pge-tw-py-4')}>
+                      <Icon name="map-marker" type="font-awesome" onPress={animateToCurrent}/>
+                    </View>
+                    <View style={tailwind('pge-tw-w-1/3 pge-tw-px-1')}>
+                        <StyledButton appearance="primary" size="small" label={"redux"} onPress={this.handleStateToConsole} />
+                    </View>
+                </View>
                 <MapView
                     ref={mapRef}
                     initialRegion={INITIAL_REGION}
-                    style={{ flex: 1, height: 400 }}
+                    style={tailwind('pge-tw-h-full')}
                 >
                     <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
                     <Marker coordinate={{ latitude: 37.78525, longitude: -122.4224 }} />
@@ -144,24 +142,8 @@ export class HomeScreen extends React.Component {
                     <Marker coordinate={{ latitude: 37.7765, longitude: -122.4424 }} />
                     <Marker coordinate={{ latitude: 37.7565, longitude: -122.4324 }} />
                 </MapView>
-                <View style={styles.container}>
-                    <View style={styles.item}>
-                        <TouchableOpacity style={styles.button} onPress={animateToRegion} >
-                            <Text style={styles.buttonText} >Animate</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.item}>
-                        <TouchableOpacity style={styles.button} onPress={animateToCurrent} >
-                            <Text style={styles.buttonText} >Current Location</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.item}>
-                        <TouchableOpacity style={styles.button} onPress={this.handleStateToConsole} >
-                            <Text style={styles.buttonText} >Redux Test</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </>
+                
+            </SafeAreaView>
         );
     }
 }

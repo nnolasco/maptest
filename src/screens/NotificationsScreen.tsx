@@ -12,13 +12,12 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { SafeAreaView, ScrollView, TouchableOpacity, View, Text } from 'react-native';
 import { ListItem, Icon, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
-import styles from '../../Styles';
 import images from '../assets/images/images';
 
 import {
@@ -31,6 +30,14 @@ import {
     COMMON_STATETOCONSOLE,
     COMPONENT_UNLOAD
 } from '../constants/actionTypesCommon';
+
+import {create} from 'tailwind-rn';
+import styles from '../../styles.json';
+
+import { StyledText } from '../components/StyledText';
+import { StyledButton } from '../components/StyledButton';
+
+const {tailwind, getColor} = create(styles);
 
 const mapStateToProps = state => ({
     ...state.Notifications,
@@ -74,11 +81,15 @@ export class NotificationsScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.sectiontitle}>{content["header1"]}</Text>
-                <Text style={styles.text}>{content["paragraph1"]}</Text>
-                <Text style={styles.text}>{content["paragraph2"]}</Text>
-            </View>
+            <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
+                <ScrollView>
+                    <View style={tailwind('pge-tw-flex-container-1 pge-tw-p-8')}>
+                        <StyledText textSize="sectionheader" textAlign="left">{content["header1"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph1"]}</StyledText>
+                        <StyledText textSize="normal" textAlign="left">{content["paragraph2"]}</StyledText>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }
