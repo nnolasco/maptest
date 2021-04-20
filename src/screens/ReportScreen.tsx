@@ -71,6 +71,7 @@ export class ReportScreen extends React.Component {
         this.getImageUpload = this.getImageUpload.bind(this);
         this.getSubmitReport = this.getSubmitReport.bind(this);
         this.getReportType = this.getReportType.bind(this);
+        this.getDamageType = this.getDamageType.bind(this);
         this.handleStateToConsole = this.handleStateToConsole.bind(this);
     }
 
@@ -90,6 +91,12 @@ export class ReportScreen extends React.Component {
         const { navigate } = this.props.navigation;
 
         navigate("ReportTypeScreen");
+    }
+
+    getDamageType() {
+        const { navigate } = this.props.navigation;
+
+        navigate("DamageTypeScreen");
     }
 
     handleStateToConsole() {
@@ -124,7 +131,7 @@ export class ReportScreen extends React.Component {
                             <StyledButton appearance="primary" size="small" label={"Report Type"} onPress={this.getReportType} />
                         </View>
                         <View style={tailwind('pge-tw-w-1/2 pge-tw-px-1')}>
-                            
+                            <StyledButton appearance="primary" size="small" label={"Damage Type"} onPress={this.getDamageType} />
                         </View>
                     </View>
                 </View>

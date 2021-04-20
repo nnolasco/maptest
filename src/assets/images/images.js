@@ -41,6 +41,9 @@ const images = {
         "rpowerline": require('./icon-powerline.png'),
         "rpowerpole": require('./icon-powerpole.png'),
         "rtreevine": require('./icon-treevine.png'),
+        "checkboxActive": require('./checkboxActive.png'),
+        "checkboxInactive": require('./checkboxInactive.png'),
+        "checkboxOtherInactive": require('./checkboxOtherInactive.png'),
     },
     "graphics": {
         "onboardbg": require('./pic-background.png'),
@@ -49,6 +52,10 @@ const images = {
         "onboard3": require('./pic-onboard-3.png'),
         "onboard4": require('./pic-onboard-4.png'),
         "about1": require('./about-1.png'),
+        "sample01": require('./sample01.png'),
+        "sample02": require('./sample02.png'),
+        "sample03": require('./sample03.png'),
+        "sample04": require('./sample04.png'),
     }
 };
 

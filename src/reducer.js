@@ -29,9 +29,10 @@ import NotFound from './reducers/reducerNotFound';
 import Notifications from './reducers/reducerNotifications';
 import Report from './reducers/reducerReport';
 import ReportType from './reducers/reducerReportType';
+import DamageType from './reducers/reducerDamageType';
 
 export default combineReducers({
     Common,
-    Onboarding, Email, JoinWaitlist, Home, Report, ReportType, NotFound, 
+    Onboarding, Email, JoinWaitlist, Home, Report, ReportType, DamageType, NotFound, 
     MyApp, About, Cookies, Help, MyReports, Notifications
 });

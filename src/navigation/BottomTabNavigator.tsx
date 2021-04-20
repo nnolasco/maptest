@@ -10,6 +10,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/HomeScreen';
 import ReportScreen from '../screens/ReportScreen';
 import ReportTypeScreen from '../screens/ReportTypeScreen';
+import DamageTypeScreen from '../screens/DamageTypeScreen';
 import HowItWorksScreen from '../screens/HowItWorksScreen';
 import MyAppScreen from '../screens/MyAppScreen';
 import AboutScreen from '../screens/AboutScreen';
@@ -105,6 +106,11 @@ function ReportNavigator() {
         name="ReportTypeScreen"
         component={ReportTypeScreen}
         options={{ headerTitle: 'Report A Safety Concert' }}
+      />
+      <ReportStack.Screen
+        name="DamageTypeScreen"
+        component={DamageTypeScreen}
+        options={{ headerTitle: 'Damage Type' }}
       />
       <ReportStack.Screen
         name="ImageLoadTestScreen"

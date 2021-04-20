@@ -33,7 +33,7 @@ export default (state = defaultState, action) => {
         case JOINWAITLIST_UPDATE_VALUE:
             return {
                 ...state,
-                [action.key]: action.value ? action.value : '',
+                [action.key]: action.value ? action.value : ''
             }
         case JOINWAITLIST_UPDATE_ARRAY:
             return {

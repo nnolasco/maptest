@@ -22,7 +22,7 @@ import images from '../assets/images/images';
 import {
     REPORTTYPE_LOADED,
     REPORTTYPE_UPDATE_VALUE,
-} from '../constants/actionTypesHelp';
+} from '../constants/actionTypesReportType';
 
 import {
     COMMON_UPDATE_VALUE,
@@ -54,17 +54,14 @@ const mapDispatchToProps = dispatch => ({
         dispatch({ type: COMMON_STATETOCONSOLE })
 });
 
-const route = 'reporttype';
-const configSettings = utility.getNodeByRoute(data.routes, route);
-const reportTypes = configSettings[0].reporttypes;
-
 export class ReportTypeScreen extends React.Component {
     constructor() {
         super();
 
-        console.log(reportTypes);
+//        console.log(reportTypes);
         this.getScreen = this.getScreen.bind(this);
         this.handleStateToConsole = this.handleStateToConsole.bind(this);
+        this.selectReportType = this.selectReportType.bind(this);
     }
 
     getScreen(screen) {
@@ -79,7 +76,17 @@ export class ReportTypeScreen extends React.Component {
         console.log(this.props.masterState);
     }
 
+    selectReportType(option) {
+        this.props.onUpdateValue('reporttype', option);
+        this.handleStateToConsole()
+        this.getScreen("DamageTypeScreen");
+    }
+
     render() {
+        const route = 'reporttype';
+        const configSettings = utility.getNodeByRoute(data.routes, route);
+        const reportTypes = configSettings[0].reporttypes;
+        
         return (
             <SafeAreaView style={tailwind('pge-tw-flex-container-1 pge-tw-bg-white')}>
                 <ScrollView>
@@ -90,7 +97,7 @@ export class ReportTypeScreen extends React.Component {
                             reportTypes.map((item, i) => {
                                 return (
                                     <View key={i}>
-                                        <StyledButton appearance="report" size="full-width" icon={item.icon} label={item.name} onPress={this.handleStateToConsole} />
+                                        <StyledButton appearance="report" size="full-width" icon={item.icon} label={item.name} onPress={() => this.selectReportType(item.value)} />
                                     </View>
                                 )
                             })

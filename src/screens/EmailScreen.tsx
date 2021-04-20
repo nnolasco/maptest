@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { SafeAreaView, ImageBackground, TouchableOpacity, Text, View, Image, TextInput } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 import data from '../../contentConfig.json';
 import utility from '../common/utility';
@@ -131,8 +132,16 @@ export class EmailScreen extends React.Component {
                             <StyledInput label="Email Address" placeholder="Email Address" defaultValue={this.props.email} 
                             onChangeText={this.handleChangeEmailText} required="True" error={error} />
                             
-                            <StyledInput label="What best describes you?" placeholder="Select One" defaultValue={this.props.usertype} 
-                            onChangeText={this.handleChangeUserTypeText} required="True" />
+                            <Text style={[tailwind('pge-tw-font-normal pge-tw-text-base pge-tw-my-1') ]}>User Type<Text style={tailwind('pge-tw-text-red')}>*</Text></Text>
+
+                            <View style={[tailwind('pge-tw-input-bc-gray-500 pge-tw-input-height-50 pge-tw-border-radius-30 pge-tw-px-5 pge-tw-input-bw-1')]} >
+                                <Picker
+                                    selectedValue={this.props.usertype}
+                                    onValueChange={this.handleChangeUserTypeText}>
+                                    <Picker.Item label="General" value="general" />
+                                    <Picker.Item label="PG&E Employee" value="employee" />
+                                </Picker>
+                            </View>
 
                             <StyledText flex="1" textSize="normal" textAlign="left"><Text style={tailwind('pge-tw-text-red')}>*</Text> Required Field</StyledText>
                         </View>

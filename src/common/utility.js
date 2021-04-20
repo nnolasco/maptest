@@ -36,6 +36,8 @@ export default {
 
     getNodeByButton: (buttonArray, buttonName) => buttonArray.filter(function (buttonArray) { return buttonArray.name == buttonName; }),
 
+    getNodeByValue: (array, value) => array.filter(function (array) { return array.value == value; }),
+
     buttonDictionary(buttonArray) {
         var outputArray = [];
 

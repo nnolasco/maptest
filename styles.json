@@ -1284,11 +1284,11 @@
 	"pge-tw-text-sm": {
 		"fontSize": 14
 	},
-	"pge-tw-text-md": {
-		"fontSize": 20
-	},
 	"pge-tw-text-base": {
 		"fontSize": 16
+	},
+	"pge-tw-text-md": {
+		"fontSize": 20
 	},
 	"pge-tw-text-lg": {
 		"fontSize": 32
@@ -6426,6 +6426,9 @@
 	},
 	"pge-tw-input-bw-1": {
 		"borderWidth": 1
+	},
+	"pge-tw-input-bw-2": {
+		"borderWidth": 2
 	},
 	"pge-tw-separator": {
 		"--tw-input-bc-opacity": 1,

@@ -276,27 +276,237 @@
                 {
                     "name": "Power Pole",
                     "icon": "rpowerpole",
-                    "value": "powerpole"
+                    "value": "powerpole",
+                    "content": [
+                        {
+                            "name": "header1",
+                            "text": [
+                                "What is your concern about\nthe Power Pole?"
+                            ]
+                        },
+                        {
+                            "name": "paragraph1",
+                            "text": [
+                                "Select all that apply:"
+                            ]
+                        },
+                    ],
+                    "buttons": [
+                        {
+                            "name": "submit",
+                            "text": "Next"
+                        }
+                    ],
+                    "damagetypes": [
+                        {
+                            "name": "Frayed/Damaged",
+                            "image": "sample01",
+                            "value": "frayed"
+                        },
+                        {
+                            "name": "Low/Sagging",
+                            "image": "sample02",
+                            "value": "low"
+                        },
+                        {
+                            "name": "Buzzing",
+                            "image": "sample03",
+                            "value": "buzzing"
+                        },
+                        {
+                            "name": "Foreign Object",
+                            "image": "sample04",
+                            "value": "foreign"
+                        }
+                    ]
                 },
                 {
                     "name": "PG&E Equipment",
                     "icon": "requipment",
-                    "value": "equipment"
+                    "value": "equipment",
+                    "content": [
+                        {
+                            "name": "header1",
+                            "text": [
+                                "What is your concern about\nthe PG&E Equipment?"
+                            ]
+                        },
+                        {
+                            "name": "paragraph1",
+                            "text": [
+                                "Select all that apply:"
+                            ]
+                        },
+                    ],
+                    "buttons": [
+                        {
+                            "name": "submit",
+                            "text": "Next"
+                        }
+                    ],
+                    "damagetypes": [
+                        {
+                            "name": "Frayed/Damaged",
+                            "image": "sample01",
+                            "value": "frayed"
+                        },
+                        {
+                            "name": "Low/Sagging",
+                            "image": "sample02",
+                            "value": "low"
+                        },
+                        {
+                            "name": "Buzzing",
+                            "image": "sample03",
+                            "value": "buzzing"
+                        },
+                        {
+                            "name": "Foreign Object",
+                            "image": "sample04",
+                            "value": "foreign"
+                        }
+                    ]
                 },
                 {
                     "name": "Power Line",
                     "icon": "rpowerline",
-                    "value": "powerline"
+                    "value": "powerline",
+                    "content": [
+                        {
+                            "name": "header1",
+                            "text": [
+                                "What is your concern about\nthe Power Line?"
+                            ]
+                        },
+                        {
+                            "name": "paragraph1",
+                            "text": [
+                                "Select all that apply:"
+                            ]
+                        },
+                    ],
+                    "buttons": [
+                        {
+                            "name": "submit",
+                            "text": "Next"
+                        }
+                    ],
+                    "damagetypes": [
+                        {
+                            "name": "Frayed/Damaged",
+                            "image": "sample01",
+                            "value": "frayed"
+                        },
+                        {
+                            "name": "Low/Sagging",
+                            "image": "sample02",
+                            "value": "low"
+                        },
+                        {
+                            "name": "Buzzing",
+                            "image": "sample03",
+                            "value": "buzzing"
+                        },
+                        {
+                            "name": "Foreign Object",
+                            "image": "sample04",
+                            "value": "foreign"
+                        }
+                    ]
                 },
                 {
                     "name": "Tree or Vine",
                     "icon": "rtreevine",
-                    "value": "treevine"
+                    "value": "treevine",
+                    "content": [
+                        {
+                            "name": "header1",
+                            "text": [
+                                "What is your concern about\nthe Tree or Vine?"
+                            ]
+                        },
+                        {
+                            "name": "paragraph1",
+                            "text": [
+                                "Select all that apply:"
+                            ]
+                        },
+                    ],
+                    "buttons": [
+                        {
+                            "name": "submit",
+                            "text": "Next"
+                        }
+                    ],
+                    "damagetypes": [
+                        {
+                            "name": "Frayed/Damaged",
+                            "image": "sample01",
+                            "value": "frayed"
+                        },
+                        {
+                            "name": "Low/Sagging",
+                            "image": "sample02",
+                            "value": "low"
+                        },
+                        {
+                            "name": "Buzzing",
+                            "image": "sample03",
+                            "value": "buzzing"
+                        },
+                        {
+                            "name": "Foreign Object",
+                            "image": "sample04",
+                            "value": "foreign"
+                        }
+                    ]
                 },
                 {
                     "name": "Other Electrical",
                     "icon": "rother",
-                    "value": "other"
+                    "value": "other",
+                    "content": [
+                        {
+                            "name": "header1",
+                            "text": [
+                                "What is your concern about\nother electrical issues?"
+                            ]
+                        },
+                        {
+                            "name": "paragraph1",
+                            "text": [
+                                "Select all that apply:"
+                            ]
+                        },
+                    ],
+                    "buttons": [
+                        {
+                            "name": "submit",
+                            "text": "Next"
+                        }
+                    ],
+                    "damagetypes": [
+                        {
+                            "name": "Frayed/Damaged",
+                            "image": "sample01",
+                            "value": "frayed"
+                        },
+                        {
+                            "name": "Low/Sagging",
+                            "image": "sample02",
+                            "value": "low"
+                        },
+                        {
+                            "name": "Buzzing",
+                            "image": "sample03",
+                            "value": "buzzing"
+                        },
+                        {
+                            "name": "Foreign Object",
+                            "image": "sample04",
+                            "value": "foreign"
+                        }
+                    ]
                 },
                 
             ]

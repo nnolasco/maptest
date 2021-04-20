@@ -41,10 +41,11 @@ export function StyledButton(
         reportContainer: tailwind('pge-tw-items-center pge-tw-bg-white pge-tw-rounded-full pge-tw-w-full pge-tw-input-bw-1 pge-tw-input-bc-gray-500'),
         buttonView: tailwind(''),
         reportView: tailwind('pge-tw-w-full pge-tw-flex-row pge-tw-content-between'),
-        buttonFull: tailwind('pge-tw-max-w-full pge-tw-p-5 pge-tw-my-3'),
+        buttonFull: tailwind('pge-tw-max-w-full pge-tw-p-3 pge-tw-my-2'),
         buttonSmall: tailwind('pge-tw-max-w-full pge-tw-p-2 pge-tw-my-3'),
         buttonText: tailwind('pge-tw-text-blue-900 pge-tw-text-base pge-tw-font-bold no-underline'),
-        reportText: tailwind('pge-tw-flex-1 pge-tw-text-blue-900 pge-tw-text-md pge-tw-font-normal no-underline pge-tw-px-4 pge-tw-py-2')
+        reportText: tailwind('pge-tw-flex-1 pge-tw-text-blue-900 pge-tw-text-md pge-tw-font-normal no-underline pge-tw-px-4 pge-tw-py-2'),
+        disabledButton: tailwind('pge-tw-opacity-30')
     });
     // const buttonStyles = StyleSheet.create({
     //     buttonContainer: {
@@ -123,7 +124,8 @@ export function StyledButton(
             size === 'full-width' && buttonStyles.buttonFull,
             size === 'small' && buttonStyles.buttonSmall,
             size === 'text' && buttonStyles.buttonText,
-        ]} onPress={onPress} >
+            isDisabled && buttonStyles.disabledButton
+        ]} onPress={onPress} disabled={isDisabled} >
             <View style={[
                 appearance === 'report' && buttonStyles.reportView,
                 appearance !== 'report' && buttonStyles.buttonView
